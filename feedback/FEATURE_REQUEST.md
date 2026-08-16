@@ -1,10 +1,10 @@
 # Feature Request Template
 
-Use this to propose a new workflow, policy, capability, or behavior that doesn't exist yet in 0.1.1-beta.
+Use this to propose a new workflow, policy, capability, or behavior that doesn't exist yet in 0.1.2-beta.
 
 ```
 Title:
-Skill Version:            0.1.1-beta
+Skill Version:            0.1.2-beta
 Category:                 F10 Feature request
 Problem:                  <what you can't do today, or what's awkward>
 Proposed behavior:        <what you'd want the agent to do instead>

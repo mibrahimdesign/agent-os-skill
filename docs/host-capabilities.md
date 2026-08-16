@@ -1,56 +1,57 @@
 # Host Capabilities
 
-Three separate concepts get confused constantly in AI tooling. Keeping them apart is central to how this
-Skill stays safe across very different hosts.
+Agent OS Skill separates three concepts that are often blurred together:
 
+```text
+CAPABILITY       — can the host technically do this?
+AUTHORIZATION    — may the active workflow use it in principle?
+APPROVAL         — did the user accept this exact bounded action?
 ```
-CAPABILITY       — can the host technically do this at all?
-AUTHORIZATION    — is the agent's use of that capability, in general, allowed here?
-APPROVAL         — did the user say yes to this specific, bounded action?
-```
 
-**None of these implies the next one.**
+None implies the next. Filesystem access does not automatically authorize source mutation, and a
+workflow that permits a write proposal still requires the user's scoped approval. See
+[Approvals](approvals.md).
 
-> An agent may have filesystem write access, but that only means the host can technically write files. It
-> does not automatically mean Agent OS Skill has user approval to modify application source. Approval is
-> always a separate, explicit, scoped step — see `docs/approvals.md`.
+## Capability states
 
-## The capability list
+Each relevant capability is recorded as `AVAILABLE`, `UNAVAILABLE`, or `UNKNOWN`. Unknown capability is
+never treated as available merely to keep a task moving.
 
-The Skill only reasons about these (SKILL.md Section 5) — it does not try to enumerate every possible
-tool a host might expose:
-
-| Capability | What it means |
+| Capability | Meaning |
 |---|---|
-| FILESYSTEM_READ | The agent can read project files. |
-| FILESYSTEM_WRITE | The agent can write/modify project files. |
-| COMMAND_EXECUTION | The agent can run commands (build, test, lint, etc.) and see real output. |
-| NETWORK_ACCESS | The agent can reach the network (fetch a URL, call an API). |
-| MCP_OR_EXTERNAL_CONNECTOR | The agent has a connected external tool/data source (design tools, issue trackers, etc.). |
-| IMAGE_INPUT | The agent can receive and interpret images (screenshots, mockups). |
-| STATE_PERSISTENCE | The agent (or host) can durably save state between messages/sessions. |
-| SUBAGENTS | The host can run separate agent instances/passes for independent work. |
-| NATIVE_WRITE_APPROVAL | The host has its own built-in confirm-before-write mechanism. |
+| `FILESYSTEM_READ` | Read project files. |
+| `FILESYSTEM_WRITE` | Create or modify files. |
+| `COMMAND_EXECUTION` | Run builds, tests, linters, or other commands and observe output. |
+| `NETWORK_ACCESS` | Reach external network resources. |
+| `MCP_OR_EXTERNAL_CONNECTOR` | Use a connected external tool or data source. |
+| `IMAGE_INPUT` | Receive and interpret screenshots or other image evidence. |
+| `STATE_PERSISTENCE` | Durably retain state or files through the host. |
+| `SUBAGENTS` | Run separate agent instances or passes. |
+| `NATIVE_WRITE_APPROVAL` | Use a host-provided confirmation mechanism. |
 
-Each is `AVAILABLE`, `UNAVAILABLE`, or `UNKNOWN`. `UNKNOWN` is treated exactly like `UNAVAILABLE` for the
-purpose of deciding what the agent may claim or do — it never grants permission by default.
+## Why this matters
 
-## Why this matters day to day
+- Without `COMMAND_EXECUTION`, the agent cannot truthfully say “tests passed.” It should label the
+  suggested check `DESCRIBED`, not `EXECUTED`.
+- Without `STATE_PERSISTENCE`, a change is `PROPOSED`, not `SAVED`.
+- A native host confirmation can participate in the approval mechanism only when it presents the
+  semantically sufficient scope. A generic “allow writes” setting is not approval for every change.
+- A connector or image capability cannot be inferred because the task would benefit from it.
 
-- If `COMMAND_EXECUTION` is unavailable, the agent should never claim "tests passed" — it should say
-  verification is `DESCRIBED`, not `EXECUTED` (`policies/evidence.md`).
-- If `STATE_PERSISTENCE` is unavailable, the agent should never claim a file was "saved" — it should
-  produce a `PROPOSED STATE UPDATE`-style output instead (`SKILL.md` Section 6, `G7`).
-- If `NATIVE_WRITE_APPROVAL` exists in your host (some IDEs/agents show their own file-write confirmation
-  dialog), that is a capability, and it might satisfy the *mechanism* of getting your consent — but the
-  Skill's Write Gate should still show you the actual scope and reasoning; a generic host "allow this
-  agent to write files" toggle, granted once, is not the same as approving this specific change.
+The detailed claim rules live in the [evidence policy](../policies/evidence.md).
 
-## Operating modes derived from capability
+## Operating modes
 
-- **FULL** — enough capability to inspect and modify a real project and verify with real commands.
-- **LIMITED** — some capability missing; the agent adapts, and is explicit about what it could not do.
-- **EMBEDDED** — no persistence; the agent can only analyze, propose, and describe — never claim a save.
+- **FULL** — enough verified capability to inspect and modify a real project and run relevant commands.
+- **LIMITED** — one or more capabilities are missing; the agent adapts and reports the gap.
+- **EMBEDDED** — no persistence; the agent analyzes, reviews, and proposes but never claims a save.
 
-See `SKILL.md` Section 6 for the full definitions, and AOS-T008, AOS-T009, and AOS-T011 in
-`tests/semantic-tests.md` for concrete scenarios you can check your own host against.
+Operating mode describes the capability environment, not the model vendor or product name. Two hosts
+with different names but the same material capability profile do not automatically prove portability.
+
+See [SKILL.md](../SKILL.md) Sections 5–6 for the normative runtime definitions. AOS-T008, AOS-T009, and
+AOS-T011 in the [semantic tests](../tests/semantic-tests.md) illustrate capability-honesty scenarios.
+
+---
+
+[Previous: Approvals](approvals.md) · [Documentation home](README.md) · [Next: FAQ](faq.md)

@@ -5,7 +5,7 @@ for the field-level definitions used here.
 
 ```
 Feedback ID:              <leave blank if unknown>
-Skill Version:            0.1.1-beta
+Skill Version:            0.1.2-beta
 Environment:              <host type, OS family — no private paths/names>
 Model:                    <model family/size or "unknown">
 Workflow:                 <which workflow was active, or "unclear/routing itself">

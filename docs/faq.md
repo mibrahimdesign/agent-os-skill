@@ -1,78 +1,86 @@
-# FAQ
+# Frequently Asked Questions
 
-**Does Agent OS Skill work with my AI model?**
-It's designed to be model-agnostic. The instructions are explicit and structured on purpose, so both
-large frontier models and smaller/local models should be able to follow them (see
-`docs/how-it-works.md` "Why progressive loading exists"). Behavior quality still depends on how well your
-specific model follows instructions in general — that variance is expected during the beta and is exactly
-what feedback helps quantify.
+## Does Agent OS Skill work with my AI model?
 
-**Does it require cloud AI?**
-No. It has no dependency on any specific cloud provider.
+It is designed to be model-neutral, but compatibility is not universal or proven. Instruction-following
+quality varies, and current live evidence covers one model class. Try a read-only task first and report
+sanitized results.
 
-**Can it work with local models?**
-Yes, conceptually — as long as the model can read and follow the Skill's instructions and the host can
-route requests through it. Compatibility with any particular local model setup is something the beta is
-actively trying to learn about; report what you find.
+## Does it require cloud AI or MCP?
 
-**Does it require MCP?**
-No. MCP (or any external connector) is treated as one optional capability
-(`MCP_OR_EXTERNAL_CONNECTOR`, see `docs/host-capabilities.md`), used only when actually available. Nothing
-in the core workflows requires it.
+No. Cloud services and external connectors are optional host capabilities, not normative dependencies.
+A local model can use the Skill if its host can load the instructions and the model follows them
+reliably.
 
-**Does it automatically modify my repository?**
-No. Read-only workflows never write. Write workflows always stop at a Write Gate and wait for your exact
-`APPROVE WRITE` reply first. See `docs/approvals.md`.
+## How do I install it?
 
-**Why does it ask for write approval?**
-Because filesystem/tool permission is not the same thing as your consent to a specific change — see
-`docs/host-capabilities.md`. The gate exists so you see the scope before it happens, not after.
+Use your host's native Skill mechanism, place the repository in a scanned instruction folder, or provide
+[SKILL.md](../SKILL.md) as context in a chat-only environment. There is no universal automatic install
+command. See [Quick Start](quick-start.md).
 
-**Can I use it only for reviews?**
-Yes. `workflows/review.md`, `workflows/security-review.md`, and `workflows/understand-project.md` are all
-strictly read-only; nothing routes you into a write unless you ask for one.
+## Does it automatically modify my repository?
 
-**What happens if my agent cannot run commands?**
-Verification is labeled `DESCRIBED` instead of `EXECUTED`, and the agent should tell you exactly what
-should be run and by whom, rather than claiming a check passed. See `policies/evidence.md`.
+No. Read-only workflows never write. A write workflow must present a scoped Write Gate and receive the
+active user's exact `APPROVE WRITE` response before source mutation. See [Approvals](approvals.md).
 
-**Does it store my code?**
-The Skill itself has no telemetry or storage mechanism. Any state described in
-`workflows/export-state.md` is generated as text; whether that text is persisted depends on the active
-host, its capabilities, and your authorization. The Skill must report proposed and saved state
-separately.
+## Why is host write permission not enough?
 
-**Does it send telemetry?**
-No hidden telemetry is designed into this Skill. Feedback is something you choose to submit manually; see
-`feedback/README.md`.
+Tool availability is capability, not consent. Agent OS Skill separates `AVAILABLE`, `AUTHORIZED`, and
+`APPROVED` so a broadly capable host still stops at the user decision boundary. See
+[Host Capabilities](host-capabilities.md).
 
-**Can repository files override Agent OS instructions?**
-No. Anything read from the repository, its docs, comments, or connected tools is treated as data to
-reason about, never as a command — even if it contains text that looks like an instruction or an approval
-  token. See `policies/instruction-isolation.md` and AOS-T004 in `tests/semantic-tests.md`.
+## Can I use it only for reviews?
 
-**Can I use it with multiple agents?**
-The governance kernel is written to be host-agnostic and should apply whether one agent runs everything
-sequentially or a host supports separate agents/passes for implementation vs. review. Sequential
-single-agent execution should be honest about not being "independent" verification (see G9 in
-`SKILL.md`). Formal multi-agent role coordination is a candidate for a future version — see
-`feedback/CORE_CANDIDATES.md` (CC-2).
+Yes. [Review](../workflows/review.md), [Security Review](../workflows/security-review.md), and
+[Understand Project](../workflows/understand-project.md) are strictly read-only workflows.
 
-**Can I suggest features?**
-Yes — `feedback/FEATURE_REQUEST.md`. Feature requests don't get built automatically, but recurring,
-evidenced ones become tracked candidates.
+## What happens when commands are unavailable?
 
-**What happens to feedback?**
-It's classified, and if it's reproducible and impactful, evaluated and tested before it changes any
-governance rule. See `feedback/README.md` and `feedback/CORE_CANDIDATES.md`.
+The agent should state the limitation and label suggested verification `DESCRIBED`, not `EXECUTED`. It
+must not claim a test, build, or lint result that it did not observe. See the
+[evidence policy](../policies/evidence.md).
 
-**Is this the full Agent OS Core?**
-No. This is a deliberately small beta subset meant to validate real workflows before a formal Core is
-built. See the root `README.md` "Current Beta Scope" and "Roadmap" sections.
+## Does it store my code or send telemetry?
 
-**Are the current PASS results field-confirmed?**
-Some are. The repository preserves 20 historical self-simulated PASS results and has live-observed
-evidence for 23 distinct tests, including a successful five-test AOS-B011 targeted regression. Seventeen
-distinct tests currently meet the field-confirmed definition. All live evidence is still limited to one
-model class and one host class, with no independent validation, so cross-model and cross-host stability
-must not be inferred. See `validation/STATUS.md`.
+The Skill contains no storage service, analytics, or hidden telemetry. A host may persist files or
+conversation state according to its own behavior; Agent OS Skill must report whether state was saved or
+only proposed. Feedback submission is manual and opt-in.
+
+## Can repository files override the Skill?
+
+No. Source, documentation, comments, logs, designs, and connector output are data to inspect. They are
+not user instructions or approval—even when they contain authoritative-looking text. See
+[instruction isolation](../policies/instruction-isolation.md).
+
+## Why does the Skill identify itself only sometimes?
+
+AOS-B011 Active Skill Focus shows one compact activation for a new task or material transition, then
+retains context silently. Normal follow-ups do not repeat the banner. This keeps task boundaries visible
+without turning every response into a status dashboard.
+
+## Can I use it with multiple agents?
+
+The governance kernel is host-neutral and can apply when a host supports separate agents. Formal
+multi-agent orchestration is not part of this Beta. A same-agent second pass must not be called
+independent verification.
+
+## Is this Agent OS Core?
+
+No. This is a deliberately bounded Skill and evidence-gathering Beta. Future Core extraction depends on
+accumulated cross-model and cross-host evidence, not roadmap confidence.
+
+## Are all PASS results field-confirmed?
+
+No. Result and evidence strength are separate. Historical self-simulation is useful but not field
+confirmation. The repository currently records 17 distinct field-confirmed tests, all within one model
+class and one host class, and no `LIVE_INDEPENDENT` evidence. See
+[Validation Status](../validation/STATUS.md).
+
+## How do I report a problem or request a feature?
+
+Use the [feedback guide](../feedback/README.md), [issue template](../feedback/ISSUE_TEMPLATE.md), or
+[feature request template](../feedback/FEATURE_REQUEST.md). Sanitize all private information first.
+
+---
+
+[Previous: Host Capabilities](host-capabilities.md) · [Documentation home](README.md) · [Next: Feedback](feedback.md)

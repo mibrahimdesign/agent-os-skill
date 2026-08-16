@@ -4,7 +4,8 @@ Current as of 2026-08-16. Counts below distinguish test results from evidence st
 
 | Item | Current state |
 |---|---|
-| Skill Version | `0.1.1-beta` |
+| Current Package Version | `0.1.2-beta` |
+| Live Evidence Runtime Baseline | `0.1.1-beta` |
 | Product Phase | Field Validation |
 | Behavior Count | 11 (`AOS-B001`-`AOS-B011`) |
 | Tests Defined | 27 (`AOS-T001`-`AOS-T027`) |
@@ -26,6 +27,10 @@ results, including 17 distinct PASS results that meet the definition of `FIELD_C
 failures. AOS-T013 and AOS-T014 have self-simulated evidence but no live execution; AOS-T021 and AOS-T025
 have no execution evidence.
 
+The 0.1.2-beta package changes public onboarding and documentation only. Runtime governance and workflow
+behavior are unchanged from the 0.1.1-beta evidence baseline, so no result or maturity level is upgraded
+by this documentation release.
+
 ## Core candidates
 
 - CC-1 — formal evaluation harness: `NEEDS_MORE_EVIDENCE`
@@ -44,6 +49,6 @@ still need the AOS-T021/CC-5 field scenario; every behavior needs cross-model an
 
 ## Version position
 
-Keep the public version at `0.1.1-beta`. The unversioned beta work now includes the AOS-B011 activation
-UX refinement without changing G1-G10. A later release decision should remain evidence-driven;
-`NO RELEASE NEEDED` remains a valid outcome.
+Version 0.1.2-beta packages the public-experience upgrade: a journey-first README, Quick Start, Prompt
+Library, documentation home, diagrams, navigation, and clearer installation guidance. It does not alter
+G1-G10, AOS-B011 semantics, approval behavior, workflows, policies, or saved validation history.

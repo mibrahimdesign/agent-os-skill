@@ -1,10 +1,10 @@
 ---
 name: agent-os-skill
-version: 0.1.1-beta
+version: 0.1.2-beta
 description: Portable governance and workflow layer for AI-assisted software development. Scope control, read-before-write, explicit write approval, instruction isolation, evidence-based verification, and honest completion reporting for any capable AI development agent.
 ---
 
-# Agent OS Skill (0.1.1-beta)
+# Agent OS Skill (0.1.2-beta)
 
 Agent-agnostic, host-agnostic, model-agnostic. Never assume a specific vendor, IDE, runtime, or tool.
 Use only generic concepts: HOST, AGENT, MODEL, AVAILABLE TOOL, FILESYSTEM, COMMAND EXECUTION, IMAGE INPUT,
@@ -205,7 +205,7 @@ change what the agent can honestly do or claim.
 AGENT OS SKILL RUNTIME
 
 Active Skill:             Agent OS Skill
-Skill Version:            0.1.1-beta
+Skill Version:            0.1.2-beta
 Mode:                     FULL | LIMITED | EMBEDDED
 Capabilities:
   Filesystem Read:        AVAILABLE | UNAVAILABLE | UNKNOWN

@@ -1,22 +1,35 @@
-# Feedback (doc index)
+# Feedback
 
-The full feedback system lives under `feedback/`. This page is a short pointer, since feedback is central
-enough to the beta that it deserves a doc entry too.
+Public Beta feedback is how Agent OS Skill separates a persuasive idea from a behavior supported by
+evidence.
 
-- `feedback/README.md` — what to report, why, and the categories (F1-F10).
-- `feedback/ISSUE_TEMPLATE.md` — structured template for something that felt wrong.
-- `feedback/FEATURE_REQUEST.md` — structured template for something you wish existed.
-- `feedback/CORE_CANDIDATES.md` — how validated feedback becomes a candidate for a future Agent OS Core,
-  and what's already being tracked.
+- [Feedback guide](../feedback/README.md) — what to report, why, and the F1–F10 categories.
+- [Issue template](../feedback/ISSUE_TEMPLATE.md) — behavior that felt wrong, broken, unsafe, or
+  confusing.
+- [Feature request](../feedback/FEATURE_REQUEST.md) — a behavior or workflow you wish existed.
+- [Core Candidates](../feedback/CORE_CANDIDATES.md) — evidence-driven possibilities for a future Agent
+  OS Core.
 
 ## The short version
 
-If you don't want to use any template: just say what you tried, what you expected, and what actually
-happened. That's enough to be useful. Sanitize any real code, secrets, or private identifiers first.
+If you do not want to use a template, answer four questions:
 
-## What happens after you submit
+1. What were you trying to do?
+2. What did you expect?
+3. What happened instead?
+4. Why did it matter?
 
-Feedback is classified, and if it looks reproducible and impactful, it gets tested against real scenarios
-before it changes anything (`feedback/README.md`'s pipeline diagram). No single report — no matter how
-convincing — silently edits `SKILL.md` or a policy file. This is deliberate: governance changes need
-evidence, not just a strong opinion, even the maintainer's own.
+Include the Skill version and general model/host class when known. Remove real source, secrets, customer
+data, internal URLs, repository names, personal information, and machine-specific paths.
+
+## What happens next
+
+Reports are classified and tested when practical. Reproducibility, severity, security impact, developer
+friction, host/model coverage, and counter-evidence all affect the decision. A single report does not
+silently edit [SKILL.md](../SKILL.md), a policy, or the governance kernel.
+
+Sensitive reports must follow [SECURITY.md](../SECURITY.md), not a public issue.
+
+---
+
+[Previous: FAQ](faq.md) · [Documentation home](README.md) · [Contributing](../CONTRIBUTING.md)

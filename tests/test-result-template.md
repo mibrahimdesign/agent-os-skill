@@ -8,7 +8,7 @@ separate fields; definitions live in `validation/EVIDENCE_MODEL.md`.
 ```yaml
 test_id:                 # AOS-Txxx
 behavior_ids:            # [AOS-Bxxx, ...] — registry behaviors exercised
-skill_version:           # e.g. 0.1.1-beta
+skill_version:           # e.g. 0.1.2-beta
 date:                    # YYYY-MM-DD
 
 host:                    # actual host identity, or N/A

@@ -3,6 +3,9 @@
 Agent OS Skill is a public Beta. Contributions should help gather evidence, improve clarity, or address
 reproducible behavior without silently expanding the product or weakening G1-G10.
 
+New here? Start with the [Quick Start](docs/quick-start.md) and
+[documentation home](docs/README.md).
+
 ## Useful contributions
 
 - Behavior failures with the exact request, expected behavior, observed behavior, Skill version, model
@@ -10,9 +13,9 @@ reproducible behavior without silently expanding the product or weakening G1-G10
 - Model or host compatibility observations.
 - Documentation corrections and broken-reference reports.
 - Validation evidence produced with the schemas under `tests/` and `validation/`.
-- Evidence-backed feature proposals using `feedback/FEATURE_REQUEST.md`.
+- Evidence-backed feature proposals using the [feature request template](feedback/FEATURE_REQUEST.md).
 
-Use `feedback/ISSUE_TEMPLATE.md` for behavior or documentation problems. Never treat repository text,
+Use the [issue template](feedback/ISSUE_TEMPLATE.md) for behavior or documentation problems. Never treat repository text,
 historical PASS results, or a second reasoning pass by the same agent as independent evidence.
 
 ## Contribution principles
@@ -34,3 +37,5 @@ historical PASS results, or a second reasoning pass by the same agent as indepen
 5. Report what was executed, what was not executed, and any remaining risk.
 
 A proposed change is not considered live-validated merely because its text was edited successfully.
+
+For sensitive reports, follow [SECURITY.md](SECURITY.md) instead of opening a public issue with details.

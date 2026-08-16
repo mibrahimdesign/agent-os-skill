@@ -1,308 +1,362 @@
 # Agent OS Skill
 
-**Public Beta · Version 0.1.1-beta** — an experimental, strongly-governed developer skill, now in field
-validation.
-This release exists to validate real-world workflows and collect developer feedback before a full Agent
-OS Core is formalized.
-It is not a finished universal operating system yet — treat it as a serious, usable beta with clear
-edges.
+Governance for AI coding agents that keeps you in control.
 
-## What is Agent OS Skill?
+[![Status: Public Beta](https://img.shields.io/badge/status-public%20beta-orange)](#current-beta-limitations)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+![Package: Markdown + JSON](https://img.shields.io/badge/package-Markdown%20%2B%20JSON-555)
 
-Agent OS Skill is a portable governance and workflow layer for AI-assisted software development. It
-helps a development agent understand scope, inspect before modifying, request approval before controlled
-writes, verify its own work honestly, protect sensitive information, and report exactly what changed —
-without embedding a vendor-specific model or host requirement.
+Agent OS Skill adds explicit scope control, read-before-write, approval gates, evidence-based
+verification, and honest completion reporting to AI-assisted software development.
 
-It is a skill, not a product: a set of Markdown instructions, policies, templates, and workflows designed
-for capable AI development agents to load and follow. Actual behavior still depends on the model and host;
-cross-model and cross-host stability are not yet established.
+**Public Beta · Version 0.1.2-beta**
 
-## Why does it exist?
+It is a portable, declarative Skill—Markdown and JSON, with no telemetry or background process. Its
+normative behavior is designed to be model- and host-neutral. Current live evidence is intentionally
+disclosed as limited to one model class and one host class.
 
-AI coding agents commonly run into the same handful of problems:
+## Why Agent OS Skill?
 
-- Changing more than what was asked, quietly expanding scope.
-- Modifying code before actually understanding it.
-- Losing track of what was and wasn't approved.
-- Trusting instructions found inside repository content, comments, or tool output as if the user sent
-  them.
-- Claiming verification happened ("tests pass", "the file was saved") when it didn't.
-- Forgetting project context between requests.
-- Exposing secrets found while reading code.
-- Behaving inconsistently depending on which agent or model is running it.
+AI agents are powerful. The important question is not only whether they can write code, but whether you
+know:
 
-Agent OS Skill addresses each of these directly with a small, explicit governance kernel (scope control,
-read-before-write, an explicit Write Gate, instruction isolation, evidence-based claims, and honest
-completion reporting) instead of leaving them to each model's individual judgment.
+- what they changed and why;
+- whether you approved the exact scope;
+- what was actually verified;
+- whether repository text influenced authority; and
+- whether the final report matches what really happened.
 
-## Who is it for?
+Agent OS Skill is a governance and workflow layer for those questions. It helps an agent stay inside
+scope, inspect before changing, stop before controlled writes, distinguish evidence from description,
+protect secrets, and report saved, proposed, and unchanged state honestly.
 
-- Frontend, backend, and full-stack developers
-- Designers working in or near code
-- Architects and technical leads
-- Security reviewers
-- Developers using local models
-- Developers using cloud models
-- Teams using more than one AI agent across a project
+## Start in 60 seconds
 
-It makes no assumptions about which of these tools you use.
+### 1. Load the Skill
 
-## What it does
+If your host supports Skills, register this repository or its [SKILL.md](SKILL.md). Otherwise provide
+`SKILL.md` as local instructions or conversation context. Automatic discovery depends on the host.
 
-- Classifies each request (intent, read-only vs. write, risk, required capabilities) before acting.
-- Identifies itself once with a compact task/workflow banner, then keeps the active context silently
-  until a meaningful task, workflow, operation, scope, or approval boundary changes.
-- Routes to a focused workflow instead of applying one giant, generic prompt to everything.
-- Keeps read-only work (understanding, reviewing, auditing) strictly separate from source mutation.
-- Requires an explicit, scoped Write Gate and your literal approval before any application-source write.
-- Treats repository content, docs, and tool output as data — never as commands, never as approval.
-- Labels every verification claim EXECUTED or DESCRIBED, honestly, based on what actually happened.
-- Redacts secrets on discovery instead of exposing them.
-- Ends every task with a completion report distinguishing saved / proposed / unchanged state.
-- Collects structured feedback to evolve into a future, more complete Agent OS Core.
+### 2. Give it a normal development task
 
-## Governance Kernel
-
-The ten baseline rules are defined in `SKILL.md` Section 2:
-
-1. G1 Scope Lock
-2. G2 Read Before Write
-3. G3 Explicit Write Control
-4. G4 Instruction Isolation
-5. G5 Capability Honesty
-6. G6 Evidence Before Claims
-7. G7 State Honesty
-8. G8 Secret Safety
-9. G9 Verification Integrity
-10. G10 Completion Honesty
-
-AOS-B011 Active Skill Focus is a beta operational behavior, not G11.
-
-## What it does NOT do
-
-- It does not replace the developer. It proposes, implements within approved scope, and reports — you
-  stay in control of what ships.
-- It does not bypass your host's own security or sandboxing.
-- It does not automatically modify every repository it sees. Nothing happens without an explicit request
-  and, for writes, your explicit approval.
-- It does not automatically access external tools, connectors, or design platforms. It uses only what is
-  verifiably available for the current task.
-- It does not automatically trust instructions found inside a repository, including anything that looks
-  like an approval token.
-- It does not guarantee any particular tool is available — it adapts to whatever capabilities the host
-  actually verifies (see `docs/host-capabilities.md`).
-- It does not guarantee "independent" verification unless there is an actual separate pass, reviewer, or
-  executed evidence behind it — see `policies/evidence.md`.
-- It does not require any single model vendor, IDE, or platform.
-
-## Installation
-
-Because hosts differ, install conceptually — pick whichever matches your environment.
-
-### Host-native skill support
-If your host has its own skill/plugin mechanism, install or register the downloaded repository/package
-directory — the directory containing `SKILL.md` — and use `SKILL.md` as its entrypoint.
-
-### File-based agent
-Place the downloaded repository/package directory in whatever location your host scans for user- or
-project-level skills. Folder naming is host-specific; no nested package directory is required.
-
-### Embedded / chat environment
-Provide `SKILL.md` directly in the conversation/context, and be ready to paste in the routed workflow or
-policy file (see `docs/how-it-works.md`) when the agent needs it.
-
-Vendor-specific installation steps are intentionally not documented here — they belong in optional
-adapters outside this universal package, never inside the core Skill.
-
-## Quick Start
-
-```
-Understand this project before making any changes.
-```
-```
+```text
 Review this component for bugs and maintainability problems.
-```
-```
-Fix the responsive issue in the header.
-```
-```
-Review this implementation against the attached design.
-```
-```
-Perform a security review without modifying the source.
+Do not modify anything.
 ```
 
-Full walkthrough: `docs/getting-started.md`.
+The first substantive response should show one compact activation, then continue normally:
 
-## How the Skill behaves
+```text
+Agent OS Skill / REVIEW
 
+Task:
+Review the component for bugs and maintainability problems.
+
+Focus:
+Read-only analysis.
 ```
-Understand -> Inspect -> Plan -> Approve when needed -> Implement -> Verify -> Report
+
+### 3. Continue naturally
+
+```text
+Fix the most important issue you found.
 ```
 
-Read-only requests stop after reporting. Write requests pause at the Write Gate until you approve.
-Details: `docs/how-it-works.md`.
+A write request changes the workflow but does not authorize mutation. The agent should inspect, plan,
+present a scoped Write Gate, and wait for your literal `APPROVE WRITE` response.
 
-At the beginning of a task, Agent OS Skill identifies the active workflow and focus once in a compact
-banner. It then keeps task, workflow, scope, and approval context silently. The banner returns only for a
-new task or a material workflow, operation, scope, approval-boundary, or active-Skill transition—not for
-routine progress or short follow-ups.
+For the two-to-five-minute walkthrough, see [Quick Start](docs/quick-start.md).
 
-## Write Gate
+## Copy-paste activation prompt
 
-Any application-source mutation is preceded by a compact Write Gate: files, reason, planned changes,
-risk, what's explicitly out of scope, and a request for your literal `APPROVE WRITE` reply.
+Use this when your host does not load the Skill automatically:
 
+```text
+Load and follow Agent OS Skill from SKILL.md.
+
+Use it as the governance and workflow layer for this task.
+
+Do not modify source files unless the Skill's Write Gate is satisfied.
+
+Task:
+<describe your task here>
 ```
+
+If the Skill is already registered with your host:
+
+```text
+Use Agent OS Skill for this task:
+<task>
+```
+
+## See it in action
+
+This is an illustrative interaction, not validation evidence.
+
+**Developer**
+
+```text
+Fix the mobile overflow in the header.
+```
+
+**Agent**
+
+```text
+Agent OS Skill / FIX BUG
+
+Task:
+Fix the mobile header overflow.
+
+Focus:
+Header only. Preserve unrelated behavior.
+
+Approval:
+NOT GRANTED
+```
+
+After inspecting the relevant implementation, the agent stops:
+
+```text
 WRITE GATE
 
 Files:
 - src/components/Header.tsx
 
 Reason:
-Fix layout overflow on narrow viewports.
+Correct the confirmed narrow-viewport overflow.
 
 Planned changes:
-- Adjust flex-wrap and spacing tokens in the header container.
+- Adjust the header layout at the existing mobile breakpoint.
 
 Risk:
 Low
 
 Out of scope:
-No changes to header logic, links, or navigation state.
+- Navigation behavior, links, dependencies, and unrelated styling.
+
+Verification plan:
+- Inspect the resulting diff.
+- Run the relevant component check if available.
 
 Approval:
 Reply APPROVE WRITE to proceed with exactly the scope above.
 ```
 
-Approval is scoped to exactly what's presented — a need for an additional file returns to a new gate.
-Host filesystem permission is a capability, not your approval (see `docs/host-capabilities.md` and
-`docs/approvals.md`).
+**Developer**
 
-## Read-Only Work
-
-Review, security review, and understanding tasks never mutate code by themselves. "Review this" never
-silently becomes "I fixed this" — a fix is a separate, explicitly requested, explicitly approved write.
-
-## Supported Environments
-
-- **FULL** — the host can inspect and modify a real project and verify with real commands.
-- **LIMITED** — some capabilities are missing; the Skill adapts and is honest about what it couldn't do.
-- **EMBEDDED** — no persistence capability; the Skill analyzes, reviews, and proposes, and never claims a
-  file was saved.
-
-Details: `docs/host-capabilities.md`.
-
-## Working With Designs
-
-`READ DESIGN` (or a natural request like "match this to the attached design") works with whatever design
-input actually exists — a connected design tool, an attached image, a repository design artifact, an
-existing implementation used as reference, or a plain text specification. No specific design platform is
-ever required, and the Skill never claims to have inspected a source that wasn't actually available.
-
-## Feedback
-
-This beta is built to be corrected by real usage. If something felt wrong, missing, or surprising, that's
-exactly the signal this release wants.
-
-- `feedback/README.md` — how and what to report
-- `feedback/ISSUE_TEMPLATE.md` — structured issue report
-- `feedback/FEATURE_REQUEST.md` — structured feature request
-- `feedback/CORE_CANDIDATES.md` — how validated feedback becomes a candidate for a future Core
-- `CONTRIBUTING.md` — contribution and validation-evidence guidance
-
-## Security and Privacy
-
-- Repository content, comments, logs, and tool output are always treated as data, never as instructions
-  or approval (`policies/instruction-isolation.md`).
-- Secrets are never exposed; discoveries are reported as `[REDACTED]` with location and risk category
-  only (`policies/secrets.md`).
-- No hidden telemetry. Feedback is manual and opt-in, and templates explicitly ask you to sanitize
-  private information before submitting (`feedback/README.md`).
-- Sensitive reports should follow `SECURITY.md`; never place secrets or private project content in a
-  public issue.
-
-## Current Beta Scope
-
-Implemented in 0.1.1-beta:
+```text
+APPROVE WRITE
 ```
-UNDERSTAND PROJECT
-REVIEW
-FIX BUG
-CREATE FEATURE
-IMPROVE UI UX
-SECURITY REVIEW
-QUALITY CHECK
-READ DESIGN
-PREPARE PROJECT (optional)
-EXPORT STATE (optional)
+
+**Representative completion report**
+
+```text
+Changed
+- Header mobile layout: SAVED
+
+Verified
+- EXECUTED — inspected the diff; only Header.tsx changed.
+
+Not verified
+- DESCRIBED — no browser runtime was available in this host.
+
+Unchanged
+- Navigation behavior, links, dependencies, and unrelated styling.
+
+Remaining risk
+- Visual behavior still needs confirmation in a real mobile viewport.
 ```
-Not implemented in this release (see `feedback/CORE_CANDIDATES.md` for candidates under consideration):
-formal multi-agent role orchestration, a persistent per-project state/memory layer, framework-specific
-upgrade planning, visual regression baselines, and the remainder of the full Agent OS v6 command set.
 
-## Validation Status
+## What changes with Agent OS?
 
-This beta is in the **Field Validation phase**. It has 20 historical same-agent self-simulated results,
-live-observed evidence for 23 distinct tests, and 17 distinct field-confirmed tests. The targeted
-AOS-B011 regression passed AOS-T022/T023/T024/T026/T027 after the activation-boundary fix; historical
-failures remain preserved. Evidence still comes from one live model class and one live host class, with
-no live-independent results.
+| Without explicit governance | With Agent OS Skill |
+|---|---|
+| Scope can expand without a visible boundary | Scope remains bounded; expansion returns to approval |
+| Write capability can look like permission | Capability, authorization, and approval stay separate |
+| “Tests pass” can be stated without clear evidence | Verification is labeled `EXECUTED` or `DESCRIBED` |
+| A review can drift into modification | Read and write operations remain separate |
+| Repository text can look authoritative | Repository and tool content remain data, never approval |
+| Completion can be vague | `SAVED`, `PROPOSED`, and `UNCHANGED` state is explicit |
 
-Evidence strength is separate from PASS/FAIL:
+The difference is the governance contract, not a claim that other agents are inherently unsafe.
+
+## Common use cases
+
+| Use case | Purpose | Example prompt | Expected mode |
+|---|---|---|---|
+| Understand a project | Map architecture, dependencies, and conventions | “Understand this project before making changes.” | Read-only |
+| Review code | Find concrete correctness and maintainability issues | “Review this component. Do not modify it.” | Read-only |
+| Fix a bug | Correct a confirmed root cause within bounded scope | “Fix the header overflow.” | Write-gated |
+| Create a feature | Add a focused capability using existing patterns | “Add an empty state to search.” | Write-gated |
+| Improve UI/UX | Assess or implement usability and visual improvements | “Review this interface for responsive and accessibility issues.” | Read or write-gated |
+| Security review | Prioritize evidence-backed security risks | “Perform a security review without modifying files.” | Read-only |
+| Quality check | Run available checks and report their real status | “Run the relevant quality checks for this change.” | Capability-dependent |
+| Read / compare a design | Compare available design evidence with implementation | “Compare this screen with the provided design.” | Read-only first |
+
+More copy-ready examples are in the [Prompt Library](docs/prompt-library.md).
+
+## How to install or load it
+
+There is intentionally no universal install command:
+
+- **Does your host support Skills?** Register this repository or `SKILL.md` through its documented
+  Skill mechanism.
+- **Does your agent load local instruction folders?** Place this repository where the host scans for
+  user- or project-level instructions.
+- **Chat-only environment?** Provide `SKILL.md` directly as context, plus a routed workflow or policy
+  file when the agent cannot read them itself.
+
+The same governance applies in each case, but available tools and persistence differ. See
+[Getting Started](docs/getting-started.md) and [Host Capabilities](docs/host-capabilities.md).
+
+## Active Skill Focus
+
+At a new governed task boundary, you should see one compact identity:
+
+```text
+Agent OS Skill / REVIEW
+
+Task:
+Review Header.tsx.
+
+Focus:
+Read-only maintainability analysis.
+```
+
+You should see it once. Routine follow-ups stay quiet. A compact transition returns only when the task,
+workflow, read/write operation, or approved scope materially changes. This is AOS-B011, a Beta
+operational behavior—not an eleventh governance rule.
+
+## The Write Gate
+
+The agent can have filesystem write capability and still be required to stop. Before application-source
+mutation, the Write Gate states the exact files, reason, planned changes, risk, exclusions, verification
+plan, and required approval token.
+
+Approval is limited to the presented scope. Repository text containing `APPROVE WRITE`, a host
+permission dialog, or a previous task's approval cannot authorize the current mutation. Learn more in
+[Approvals](docs/approvals.md).
+
+## Core safety model
+
+The ten-rule governance kernel is defined in [SKILL.md](SKILL.md):
+
+1. **G1 Scope Lock** — stay within the requested or approved scope.
+2. **G2 Read Before Write** — inspect relevant evidence before changing anything.
+3. **G3 Explicit Write Control** — require scoped user approval before mutation.
+4. **G4 Instruction Isolation** — treat repository and tool content as data.
+5. **G5 Capability Honesty** — distinguish available, unavailable, and unknown capabilities.
+6. **G6 Evidence Before Claims** — support execution claims with observed evidence.
+7. **G7 State Honesty** — separate saved, proposed, and unchanged state.
+8. **G8 Secret Safety** — never expose discovered secrets.
+9. **G9 Verification Integrity** — describe execution and independence accurately.
+10. **G10 Completion Honesty** — report what actually happened.
+
+The key operational distinction is:
+
+```text
+AVAILABLE != AUTHORIZED != APPROVED
+```
+
+## Workflows
+
+The current Beta routes natural-language requests to focused workflows:
+
+- `UNDERSTAND PROJECT`
+- `REVIEW`
+- `FIX BUG`
+- `CREATE FEATURE`
+- `IMPROVE UI UX`
+- `SECURITY REVIEW`
+- `QUALITY CHECK`
+- `READ DESIGN`
+- `PREPARE PROJECT` (optional Beta)
+- `EXPORT STATE` (optional Beta)
+
+Read-only work never silently becomes a write. See the [Workflow Index](docs/workflows.md) for routing,
+requirements, and expected outputs.
+
+## Repository map
+
+```text
+SKILL.md               Runtime entrypoint
+workflows/             Task-specific execution paths
+policies/              Governance detail
+templates/             Write Gate and completion structures
+docs/                  User documentation
+tests/                 Semantic behavior scenarios
+validation/            Evidence and validation records
+feedback/              Beta feedback and future Core candidates
+```
+
+## Documentation
+
+### Beginner
+
+- [Documentation Home](docs/README.md) — choose a path by goal.
+- [Quick Start](docs/quick-start.md) — first task in two to five minutes.
+- [Getting Started](docs/getting-started.md) — guided tutorial with expected results.
+- [Prompt Library](docs/prompt-library.md) — copy-ready development prompts.
+
+### Practitioner
+
+- [How It Works](docs/how-it-works.md) — request flow and operational state.
+- [Workflows](docs/workflows.md) — workflow index.
+- [Approvals](docs/approvals.md) — Write Gate and approval scope.
+- [Host Capabilities](docs/host-capabilities.md) — FULL, LIMITED, and EMBEDDED modes.
+- [FAQ](docs/faq.md) — practical questions.
+
+### Maintainer / validator
+
+- [SKILL.md](SKILL.md) — normative runtime instructions.
+- [Policies](policies/) — governance details.
+- [Tests](tests/) — behavior registry and semantic scenarios.
+- [Validation](validation/) — methodology, sessions, and status.
+- [Feedback](feedback/) — reports, candidates, and Core-readiness tracking.
+
+## Validation
+
+This Beta is in **Field Validation**. Saved evidence currently records 27 semantic scenarios, 20
+historical same-agent self-simulations, live-observed evidence for 23 distinct tests, and 17 distinct
+field-confirmed tests. The AOS-B011 targeted regression passed its five executed scenarios.
+
+Result and evidence strength remain separate:
 
 - `STATIC_REVIEW` — files inspected; no scenario execution.
 - `SELF_SIMULATED` — the same agent reasoned through the scenario.
 - `LIVE_OBSERVED` — a real scenario ran in an actual host/runtime and was observed.
 - `LIVE_INDEPENDENT` — execution received genuinely separate evaluation.
 
-Cross-model and cross-host validation remain incomplete. See `validation/STATUS.md` for the concise
-dashboard and `validation/EVIDENCE_MODEL.md` for maintainer definitions.
+These results were collected against the 0.1.1-beta runtime baseline. This 0.1.2-beta package improves
+public onboarding and documentation without changing runtime governance behavior or upgrading evidence.
+See [Validation Status](validation/STATUS.md) for the full, current disclosure.
 
-To participate, run a sanitized scenario in a real host, record what actually happened using
-`tests/test-result-template.md`, and submit the result or plain-language feedback without private code,
-secrets, internal URLs, or customer information. The quick-start workflow does not require knowing the
-validation vocabulary.
+## Current Beta limitations
 
-## Roadmap
-
-```
-0.1.x   Behavioral validation        (this release: field-validate the existing beta, fix real defects)
-0.2.x   Feedback-driven expansion    (real developer usage drives what's added next)
-Future  Agent OS Core extraction     (only once governance is stable across models and hosts, not on a
-                                       fixed date)
-```
-Roadmap items are directional, not commitments. Priorities are driven by what real usage actually
-surfaces — see `feedback/CORE_CANDIDATES.md` and `feedback/CORE_READINESS.md`.
-
-## Known Limitations
-
-- Behavior quality depends partly on the host/model's own instruction-following ability.
-- Some environments cannot persist project state between messages or sessions.
-- Some environments cannot execute verification commands (builds, tests, linters).
-- Independent verification requires actual independent execution or reviewer separation — sequential
-  single-agent self-checks are labeled as such, not as independent.
+- Live evidence is limited to `SINGLE_MODEL` and `SINGLE_HOST`.
+- There is no `LIVE_INDEPENDENT` evidence.
 - AOS-T021 approval retention and AOS-T025 Active Skill scope growth remain unexecuted.
-- Cross-model and cross-host stability have not been established; current live evidence is limited to
-  `SINGLE_MODEL` and `SINGLE_HOST`.
-- Host-native skill discovery mechanisms differ across platforms; this package documents installation
-  conceptually, not per-vendor.
-- Vendor-specific adapters (for a particular IDE, design tool, or model provider) are intentionally not
-  included in this universal beta.
+- Cross-model and cross-host stability are not established.
+- Behavior still depends partly on the host/model's instruction-following ability.
+- Some hosts cannot persist files, execute commands, or retain state across sessions.
+- Host-native discovery and installation differ; no universal automatic loading claim is made.
+- Vendor-specific adapters and the broader Agent OS Core are intentionally outside this package.
 
-## Documentation
+Public Beta means safe enough to try with disclosed limits—not field-stable, production-certified, or a
+security guarantee. The package exists to gather real developer evidence before any future Agent OS Core
+extraction.
 
-- `docs/getting-started.md` — tutorial walkthrough
-- `docs/how-it-works.md` — architecture and request flow
-- `docs/workflows.md` — full workflow index
-- `docs/approvals.md` — the Write Gate and approval model in depth
-- `docs/host-capabilities.md` — capability vs. authorization vs. approval
-- `docs/feedback.md` — feedback system pointer
-- `docs/faq.md` — frequently asked questions
-- `CONTRIBUTING.md` — public contribution guidance
-- `SECURITY.md` — security-reporting guidance
+## Feedback, contribution, and security
+
+- [Feedback guide](feedback/README.md) — report behavior failures, host/model compatibility, and
+  documentation issues.
+- [Contributing](CONTRIBUTING.md) — submit changes or sanitized validation evidence.
+- [Security](SECURITY.md) — report sensitive issues without public disclosure.
+- [Core Candidates](feedback/CORE_CANDIDATES.md) — see how recurring evidence is evaluated without
+  becoming governance automatically.
+
+Do not submit private source code, credentials, customer data, internal URLs, or machine-specific paths.
 
 ## License
 
-MIT — see `LICENSE`.
+[MIT](LICENSE)

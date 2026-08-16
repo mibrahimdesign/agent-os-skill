@@ -5,7 +5,7 @@ Use this to capture feedback about the Skill itself (not about the project being
 
 ```
 Feedback ID:              <assign sequentially or leave blank for the maintainer to assign>
-Skill Version:            0.1.1-beta
+Skill Version:            0.1.2-beta
 Environment:               <host type, OS, general setup — no private paths or names>
 Model:                     <model family/size if known, or "unknown">
 Workflow:                  <UNDERSTAND | REVIEW | FIX_BUG | CREATE_FEATURE | IMPROVE_UI_UX |

@@ -3,10 +3,39 @@
 All notable changes to Agent OS Skill are documented here. This project uses `MAJOR.MINOR.PATCH-stage`
 versioning during the beta; nothing is guaranteed stable until a non-beta 1.0.0.
 
-## Unreleased — validation infrastructure and beta UX
+## 0.1.2-beta
 
-The public Skill version remains `0.1.1-beta`. This work adds validation metadata plus a compact
-single-activation UX refinement. It does not change G1-G10, add a workflow, or expand product scope.
+Public-experience and onboarding release. Runtime governance, approval semantics, workflow behavior, and
+saved validation evidence are unchanged from the validated 0.1.1-beta baseline.
+
+### Added
+
+- A two-to-five-minute Quick Start with expected outputs and troubleshooting.
+- A copy-ready Prompt Library covering the supported development workflows.
+- A documentation landing page organized for beginners, practitioners, and maintainers.
+- GitHub-native Mermaid diagrams for request routing and approval boundaries.
+
+### Changed
+
+- Reorganized the README around the user journey: discover, understand, try, trust, learn, and
+  contribute.
+- Added a realistic Write Gate and completion-report example, installation decision guidance, common use
+  cases, repository map, and clearer Active Skill Focus onboarding.
+- Made major documentation paths clickable and added lightweight previous/home/next navigation.
+- Clarified that current live evidence belongs to the 0.1.1-beta runtime baseline and is not upgraded by
+  these documentation changes.
+
+### Validation
+
+- Documentation-only structural review is required for links, Mermaid syntax, versions, and claim
+  consistency. No new behavioral PASS or field-confirmed result is claimed.
+- G1-G10, AOS-B011 semantics, workflows, policies, Write Gate authority, and validation history are
+  unchanged.
+
+## 0.1.1-beta — validation infrastructure and beta UX
+
+This release added validation metadata plus a compact single-activation UX refinement. It did not change
+G1-G10, add a workflow, or expand product scope.
 
 ### Added
 - Stable `evidence_level` values, separate `validation_confidence`, field-confirmed criteria, vendor-
@@ -34,12 +63,12 @@ single-activation UX refinement. It does not change G1-G10, add a workflow, or e
 - Corrected historical wording from five to three newly added core scenarios; the five adversarial
   scenarios remain unchanged.
 
-## 0.1.1-beta
+### Behavioral field-validation changes
 
 Behavioral field validation round. Scope per the validation brief: bug fixes and validation
 infrastructure only — no new workflows, no expanded command set.
 
-### Fixed
+#### Fixed
 - **AOS-F001** (`policies/evidence.md`, behavior AOS-B006 Evidence Before Claims): a discovered textual
   claim of success ("tests passed", "state saved successfully", "build succeeded") was not explicitly
   excluded as evidence for the current task. The general "evidence from this task" wording already
@@ -51,7 +80,7 @@ infrastructure only — no new workflows, no expanded command set.
 - `tests/semantic-tests.md` heading structure corrected (h3 headings now sit under an h2, blank lines
   added around headings) — a documentation-quality fix, not a behavioral one.
 
-### Changed
+#### Changed
 - `SKILL.md`: added Section 7 "Runtime Identity" (capability/mode/intent/approval-state snapshot,
   operational — not required to print every turn); harmonized the Approval field across Sections 3-4-7-9
   to one three-state vocabulary (`NOT_REQUIRED | NOT_GRANTED | GRANTED`), replacing the previous
@@ -67,7 +96,7 @@ infrastructure only — no new workflows, no expanded command set.
 - `tests/semantic-tests.md`: renumbered from ad hoc "Test 1-10" to stable `AOS-Txxx` IDs; added 3 new
   core scenarios and 5 adversarial scenarios (20 total), each mapped to `tests/behavior-registry.md`.
 
-### Added
+#### Added
 - `tests/behavior-registry.md`: stable `AOS-Bxxx` IDs for the ten governance behaviors (G1-G10), each
   with runtime expectation, failure condition, and related tests.
 - `tests/test-result-template.md`: the standardized schema every executed test is recorded in
@@ -81,17 +110,18 @@ infrastructure only — no new workflows, no expanded command set.
   The current tracker supersedes that vocabulary with the maturity model in
   `validation/EVIDENCE_MODEL.md`.
 
-### Validation at the original release snapshot
+#### Validation at the original release snapshot
 - 20/20 defined semantic + adversarial tests (`AOS-T001`-`AOS-T020`) executed as
   `SELF_SIMULATED_SINGLE_PASS` (single model: Claude Sonnet 5; single host: Claude Code CLI) — see
   `validation/sessions/2026-08-16-sonnet5-self-simulation.md`. Result: 20 PASS (AOS-T007 carries an
   explicit real-world-confirmation caveat tracked as CC-5), 0 FAIL, 0 BLOCKED, 0 NOT_EXECUTED in that
   historical 20-test session.
 - At this release snapshot, no `LIVE_MULTI_TURN`, cross-model, or cross-host session had been executed.
-  Later Unreleased validation records preserve subsequent live evidence separately; see
+  Later validation records in the same 0.1.1-beta publication baseline preserve subsequent live
+  evidence separately; see
   `validation/STATUS.md` for the current state.
 
-### Known
+#### Known
 - At the original release snapshot, cross-host and cross-model behavior were unvalidated. Current live
   evidence remains limited to one model class and one host class, so portability and stability are still
   not established.

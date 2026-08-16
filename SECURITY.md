@@ -2,7 +2,7 @@
 
 ## Supported version
 
-Agent OS Skill `0.1.1-beta` is the current supported Beta. It is experimental and is not a security
+Agent OS Skill `0.1.2-beta` is the current supported Beta. It is experimental and is not a security
 certification or a substitute for project-specific security controls.
 
 ## Reporting a security issue
@@ -12,7 +12,7 @@ sensitive reports. If no private channel is available, do not post secrets, expl
 source, customer information, or internal URLs in a public issue. Open a minimal sanitized issue asking
 the maintainers to provide a private reporting channel.
 
-For non-sensitive behavioral failures, use `feedback/ISSUE_TEMPLATE.md`.
+For non-sensitive behavioral failures, use the [issue template](feedback/ISSUE_TEMPLATE.md).
 
 Include, when safe:
 

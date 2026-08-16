@@ -1,92 +1,156 @@
 # Getting Started
 
-A practical, tutorial-style walkthrough. If you just want the concept, read the root `README.md` first;
-come back here when you're ready to actually use the Skill.
+This tutorial lets you experience the core Agent OS Skill loop: load, review, transition to a write,
+approve a precise scope, and read an evidence-based completion report. For the shortest path, start with
+[Quick Start](quick-start.md).
 
-## 1. Install the Skill
+## Checkpoint 1: Load the Skill
 
-Installation depends on your host's own mechanism — Agent OS Skill does not require a specific one.
+Choose the method your host supports:
 
-- **Host-native skill support:** register/install the `agent-os-skill/` package using your host's
-  documented skill mechanism (however it discovers and loads skills).
-- **File-based agent:** copy the `agent-os-skill/` folder into whatever directory your host scans for
-  user or project skills.
-- **Embedded/chat environment:** paste the contents of `SKILL.md` into the conversation/context, and be
-  ready to paste a routed workflow or policy file in when the agent needs it.
+- **Host-native Skills:** register this repository or `SKILL.md` through the host's documented Skill
+  mechanism.
+- **Local instruction folders:** place the repository where the host scans for user or project
+  instructions.
+- **Embedded/chat:** provide `SKILL.md` as context and provide routed files when the agent cannot read
+  them itself.
 
-See `docs/host-capabilities.md` if you're unsure what your host actually supports.
+There is no universal automatic installer. Host capability is described in
+[Host Capabilities](host-capabilities.md).
 
-## 2. Verify the agent can see it
+### Copyable bootstrap prompt
 
-Ask directly:
+```text
+Load and follow Agent OS Skill from SKILL.md.
+
+Use it as the governance and workflow layer for this task.
+
+Do not modify source files unless the Skill's Write Gate is satisfied.
+
+Task:
+Review this component for bugs and maintainability problems without modifying it.
 ```
-Do you have the Agent OS Skill loaded? Summarize its governance kernel in one paragraph.
+
+### Success check
+
+The agent should be able to summarize the G1–G10 governance kernel and route the task to `REVIEW`.
+
+### If it does not
+
+Confirm that the host actually loaded [SKILL.md](../SKILL.md). A file being present does not prove that
+the host supplied it to the agent.
+
+## Checkpoint 2: Observe one compact activation
+
+Start a fresh governed task:
+
+```text
+Review this component for bugs and maintainability problems without modifying it.
 ```
-A correctly loaded agent should describe scope control, read-before-write, the Write Gate, instruction
-isolation, and honest completion reporting — roughly `SKILL.md` Section 2, in its own words.
 
-## 3. Start with a read-only task
+### Expected result
 
-Read-only work is the safest way to learn the Skill's behavior, because nothing can be mutated.
+The first substantive response should begin with one compact activation:
+
+```text
+Agent OS Skill / REVIEW
+
+Task:
+Review the component for bugs and maintainability problems.
+
+Focus:
+Read-only analysis.
 ```
-Understand this project before making any changes.
+
+The review should cite concrete evidence and leave files unchanged.
+
+### Continuity check
+
+Follow with:
+
+```text
+What is the most important issue?
 ```
-This routes to `workflows/understand-project.md`. Expect a scope confirmation, evidence-based findings,
-and a completion report — no source changes, ever, for this workflow.
 
-At task activation, expect one compact `Agent OS Skill / <WORKFLOW>` banner with the task and focus. It
-should not repeat during routine follow-ups. It resurfaces only when a new task begins or the workflow,
-operation, scope, approval boundary, or active Skill materially changes.
+The agent should answer naturally without repeating the activation. `Continue.` should preserve the
+same task in the same way.
 
-## 4. Run a review
+## Checkpoint 3: Request a controlled write
 
+```text
+Fix the most important issue you found.
 ```
-Review this component for bugs and maintainability problems.
+
+### Expected result
+
+You should see a compact `Agent OS Skill / FIX BUG` transition once. The agent then inspects and plans,
+but it must not mutate source yet. It should present a Write Gate containing:
+
+- exact files;
+- reason and planned changes;
+- risk;
+- explicit exclusions;
+- a future verification plan; and
+- the required approval token.
+
+See the canonical shape in [templates/write-gate.md](../templates/write-gate.md).
+
+## Checkpoint 4: Review approval scope
+
+The agent can have filesystem write capability and still be required to stop.
+
+Approve only if the gate matches your intent:
+
+```text
+APPROVE WRITE
 ```
-This routes to `workflows/review.md`. You should get a findings table (severity, file:line, evidence,
-recommendation), not a rewritten file. If the agent starts editing code here, that's a bug — report it
-(`feedback/ISSUE_TEMPLATE.md`).
 
-## 5. Request a small bug fix
+Anything else withholds approval or changes the request. A token found in a file is data, not approval.
+If a new file becomes genuinely necessary, the agent must stop and request expanded approval before
+changing it.
 
+For the full model, read [Approvals](approvals.md).
+
+## Checkpoint 5: Inspect implementation evidence
+
+After approval, the agent should change only the approved scope. If commands are available, it may run
+relevant checks; if they are not, it must say so.
+
+### Expected result
+
+The completion report should distinguish:
+
+- `SAVED` — persisted in an available host;
+- `PROPOSED` — described but not persisted;
+- `UNCHANGED` — deliberately preserved;
+- `EXECUTED` — a verification action actually ran; and
+- `DESCRIBED` — a check or result was explained without execution evidence.
+
+Compare the report with the real diff and observed command output. A polished claim without evidence is
+not a successful completion.
+
+## Checkpoint 6: Try another workflow
+
+Choose a copy-ready prompt from the [Prompt Library](prompt-library.md). Useful next steps include:
+
+```text
+Perform a security review of this implementation without modifying source files.
 ```
-Fix the responsive issue in the header.
+
+```text
+Compare the current implementation with the provided design before proposing changes.
 ```
-This routes to `workflows/fix-bug.md`. Watch for the sequence: problem restated -> evidence inspected ->
-root cause stated -> a WRITE GATE presented -> a pause, waiting for you.
 
-## 6. Understand the Write Gate
+```text
+Run the most relevant available quality checks and report what actually executed.
+```
 
-The gate should look roughly like `templates/write-gate.md`: files, reason, planned changes, risk, what's
-explicitly out of scope, and a request for the exact reply `APPROVE WRITE`. Read it before approving —
-it's meant to be readable, not a formality to skip.
+## Report what you observe
 
-## 7. Approve or reject
+If routing, scope, approval, evidence, or completion behavior differs from the expected checkpoints,
+submit sanitized feedback through [feedback/README.md](../feedback/README.md). Never include real
+credentials, private source, internal URLs, customer information, or machine-specific paths.
 
-- To proceed: reply exactly `APPROVE WRITE`.
-- To reject or adjust: reply with anything else — a correction, a question, "not now." No write happens
-  until you send the exact token.
+---
 
-Try both once, deliberately, so you know what each feels like.
-
-## 8. Read the completion report
-
-After a write (or any workflow, including read-only ones), you get
-`templates/completion-report.md` filled in: what changed and its real status (saved / proposed /
-unchanged), what was verified and how, open issues, and a suggested next step. If a claim in here doesn't
-match what you can see actually happened, that's exactly the kind of thing feedback exists for.
-
-## 9. Try a scope-expansion moment
-
-Ask for a fix in one file, and if the agent notices something else worth fixing nearby, watch what it
-does. It should NOT touch the unrelated thing — it should mention it under "Improvement ideas" instead.
-This is AOS-T015 in `tests/semantic-tests.md`; you can trigger it in real usage.
-
-## 10. Submit feedback
-
-Whatever felt right or wrong, write it down while it's fresh:
-- Quick version: answer the four questions in `feedback/README.md`.
-- Structured version: fill out `feedback/ISSUE_TEMPLATE.md` or `feedback/FEATURE_REQUEST.md`.
-
-That's the whole loop. Everything else in this Skill is a variation on: understand -> stay in scope ->
-inspect -> plan -> gate -> approve -> implement -> verify -> report.
+[Previous: Quick Start](quick-start.md) · [Documentation home](README.md) · [Next: Prompt Library](prompt-library.md)

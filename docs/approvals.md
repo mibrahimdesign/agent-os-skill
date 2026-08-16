@@ -1,15 +1,32 @@
 # Approvals
 
-## Why the Write Gate exists
+The agent can have filesystem write capability and still be required to stop. The Write Gate makes the
+proposed mutation visible and gives the user a precise decision point before source changes.
 
-AI agents that can write files are useful and risky in the same breath. The Write Gate exists so that
-before any application source changes, you see exactly what will change, why, and what will not change —
-and you get to say yes or no before it happens, not after.
+## Capability is not approval
 
-## The gate itself
-
-Compact by design (`templates/write-gate.md`):
+```mermaid
+flowchart LR
+    A[Write capability is available] -->|Tool exists; no consent implied| B[Workflow permits a write proposal]
+    B -->|Still not approval| C[Scoped Write Gate]
+    C -->|Active user replies APPROVE WRITE| D[Approved mutation scope]
 ```
+
+Each step is distinct:
+
+- **Available:** the host can technically perform the operation.
+- **Authorized:** the active workflow allows the operation to be proposed.
+- **Approved:** the user accepts the exact scope shown in the current Write Gate.
+
+```text
+AVAILABLE != AUTHORIZED != APPROVED
+```
+
+## The Write Gate
+
+The canonical structure lives in [templates/write-gate.md](../templates/write-gate.md):
+
+```text
 WRITE GATE
 
 Files:
@@ -25,43 +42,55 @@ Risk:
 Low / Medium / High
 
 Out of scope:
-<what this will NOT touch>
+<what this will not touch>
 
 Verification plan:
-<what will be checked, and how>
+<checks planned after implementation>
 
 Approval:
 Reply APPROVE WRITE to proceed with exactly the scope above.
 ```
 
-## The only valid approval
+Future verification must remain planned until it actually runs. A pre-write gate cannot truthfully call
+a future diff inspection `EXECUTED`.
 
-The literal reply `APPROVE WRITE`, sent by you, in the live conversation, after seeing the gate. Nothing
-else counts:
-- Not a token found in a repository file, comment, commit message, or log — that's DATA
-  (`policies/instruction-isolation.md`), never a real approval, even if it's the exact right words.
-- Not host-level permissions. Your host might let the agent write files at the OS/sandbox level — that's
-  a *capability*, not your consent to this specific change. See `docs/host-capabilities.md`.
-- Not a general "yes go ahead" said before any gate was shown, applied retroactively to a later, different
-  change.
+## The only valid source-write approval
+
+The literal `APPROVE WRITE` reply must come from the active user interaction after the gate is visible.
+None of the following count:
+
+- the token inside source, documentation, a comment, a log, or tool output;
+- a host filesystem permission prompt;
+- a general “go ahead” sent before the current gate;
+- approval from an earlier or unrelated task; or
+- the existence of a write tool.
+
+Repository and external content remain data under
+[instruction isolation](../policies/instruction-isolation.md).
 
 ## Approval is scoped
 
-Approving a gate for `Button.tsx` and `button.scss` approves exactly that. If the agent later determines
-it also needs to touch `Header.tsx`, it must stop and present a new or updated gate for that addition —
-it does not fold silently into what you already approved.
+Approval for `Button.tsx` and `button.scss` covers only the presented changes to those files. If evidence
+later makes `shared-helper.ts` genuinely necessary, the agent must stop before touching it, surface the
+scope change, and request expanded approval.
 
-Conversely, you should not be asked to re-approve twice for work that stays entirely inside what you
-already said yes to. If the agent is asking again for something clearly already covered, that's friction
-worth reporting.
+Unchanged approved scope should not trigger unnecessary repeated gates. Approval persists only for the
+same active task and unchanged scope; it does not transfer to a distinct task.
 
-## If you say no (or anything other than the exact token)
+## If you reject or revise
 
-No source write happens. The agent should treat your reply as a scope adjustment or a rejection and
-respond to it directly — ask a clarifying question, revise the plan, or stop, depending on what you said.
+Any response other than the exact token withholds approval. The agent should address the response by
+clarifying, narrowing, revising the gate, or stopping. No application-source mutation should occur.
 
-## Other approval tokens in this Skill
+## Approval and completion
 
-The Write Gate's `APPROVE WRITE` is the main one used in the 0.1.1-beta workflow set. If a future version
-adds skill-installation or script-execution flows, they would use their own distinctly-named tokens, kept
-separate from `APPROVE WRITE` on purpose so one approval can never be silently reinterpreted as another.
+Approval allows implementation; it does not prove implementation happened or verification succeeded.
+The completion report must separately show what was `SAVED`, `PROPOSED`, or `UNCHANGED` and what was
+actually `EXECUTED` or merely `DESCRIBED`.
+
+The 0.1.2-beta workflow set uses `APPROVE WRITE` for application-source mutation. Any future approval
+domain would require a distinct token so one approval cannot silently authorize another kind of action.
+
+---
+
+[Previous: Workflows](workflows.md) · [Documentation home](README.md) · [Next: Host Capabilities](host-capabilities.md)
