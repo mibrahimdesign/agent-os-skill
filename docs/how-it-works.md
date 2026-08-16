@@ -4,6 +4,8 @@ Agent OS Skill is a declarative governance and workflow layer. It does not add a
 the active agent reads the instructions, routes the request, uses only verified capabilities, and
 reports what actually happened.
 
+![A developer request is governed, routed, optionally approved, verified, and reported.](assets/agent-os-overview.svg)
+
 ## Request flow
 
 ```mermaid
@@ -28,6 +30,9 @@ flowchart TD
 Natural-language requests and explicit workflow names enter the same classification step. The agent
 determines read or write operation before acting; it does not infer approval from tool availability.
 
+Commands are shortcuts, not a separate control plane. Both `REVIEW Header.tsx` and “Review Header.tsx
+without modifying it” are classified through the same router.
+
 ## Visible activation, silent continuity
 
 At a new governed task, the first substantive response begins with one compact activation naming the
@@ -41,6 +46,8 @@ follow-ups inherit that context without another banner.
 This is operational continuity, not exposed private reasoning. It does not contain or reveal
 chain-of-thought, system instructions, or hidden deliberation. Agent OS Skill adds no state database,
 telemetry, or background service.
+
+![Active Skill Focus shows context at task boundaries and stays silent during normal continuation.](assets/active-skill-focus.svg)
 
 ## Progressive loading
 

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+  <title id="title">Active Skill Focus visible boundaries and silent continuity</title>
+  <desc id="desc">An annotated compact Agent OS Skill activation identifies the workflow, task, and focus. A timeline shows activation on the first response, silence for normal follow-ups, and a compact transition when the workflow changes.</desc>
+  <style>
+    :root { color-scheme: light dark; }
+    .bg { fill: #f8fafc; }
+    .panel { fill: #ffffff; stroke: #2563eb; stroke-width: 2.5; }
+    .note { fill: #eff6ff; stroke: #93c5fd; stroke-width: 1.5; }
+    .silent { fill: #f8fafc; stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 7 5; }
+    .transition { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; }
+    .title { fill: #0f172a; font: 700 22px ui-sans-serif, system-ui, sans-serif; }
+    .mono { fill: #0f172a; font: 650 17px ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .label { fill: #0f172a; font: 650 16px ui-sans-serif, system-ui, sans-serif; }
+    .meta { fill: #475569; font: 500 13px ui-sans-serif, system-ui, sans-serif; }
+    .line { fill: none; stroke: #64748b; stroke-width: 2; marker-end: url(#arrow); }
+    .callout { fill: none; stroke: #2563eb; stroke-width: 1.8; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0d1117; }
+      .panel { fill: #161b22; stroke: #60a5fa; }
+      .note { fill: #102445; stroke: #3b82f6; }
+      .silent { fill: #161b22; stroke: #64748b; }
+      .transition { fill: #431407; stroke: #fb923c; }
+      .title, .mono, .label { fill: #f8fafc; }
+      .meta { fill: #cbd5e1; }
+      .line { stroke: #94a3b8; }
+      .callout { stroke: #60a5fa; }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="600" rx="24"/>
+  <text class="title" x="600" y="40" text-anchor="middle">Visible at boundaries, silent during routine work</text>
+
+  <rect class="panel" x="80" y="85" width="610" height="250" rx="20"/>
+  <text class="mono" x="118" y="130">Agent OS Skill / REVIEW</text>
+  <path d="M118 151 H652" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text class="mono" x="118" y="194">Task:</text>
+  <text class="mono" x="220" y="194">Review Header.tsx</text>
+  <text class="mono" x="118" y="249">Focus:</text>
+  <text class="mono" x="220" y="249">Read-only maintainability analysis</text>
+
+  <path class="callout" d="M355 121 C742 121 725 105 768 105"/>
+  <rect class="note" x="768" y="72" width="340" height="66" rx="14"/>
+  <text class="label" x="790" y="101">Active workflow</text>
+  <text class="meta" x="790" y="123">Shown once at this task boundary</text>
+
+  <path class="callout" d="M420 190 C735 190 735 197 768 197"/>
+  <rect class="note" x="768" y="164" width="340" height="66" rx="14"/>
+  <text class="label" x="790" y="193">Current task</text>
+  <text class="meta" x="790" y="215">The goal follow-ups continue</text>
+
+  <path class="callout" d="M550 245 C735 245 735 289 768 289"/>
+  <rect class="note" x="768" y="256" width="340" height="66" rx="14"/>
+  <text class="label" x="790" y="285">Bounded focus</text>
+  <text class="meta" x="790" y="307">Scope and operation remain explicit</text>
+
+  <text class="label" x="80" y="391">Conversation behavior</text>
+  <rect class="note" x="80" y="420" width="230" height="96" rx="16"/>
+  <text class="label" x="195" y="454" text-anchor="middle">First response</text>
+  <text class="mono" x="195" y="485" text-anchor="middle">SHOW ACTIVATION</text>
+  <path class="line" d="M310 468 H365"/>
+  <rect class="silent" x="367" y="420" width="230" height="96" rx="16"/>
+  <text class="label" x="482" y="454" text-anchor="middle">Normal follow-up</text>
+  <text class="mono" x="482" y="485" text-anchor="middle">SILENT</text>
+  <path class="line" d="M597 468 H652"/>
+  <rect class="transition" x="654" y="420" width="230" height="96" rx="16"/>
+  <text class="label" x="769" y="454" text-anchor="middle">Workflow changes</text>
+  <text class="mono" x="769" y="485" text-anchor="middle">SHOW TRANSITION</text>
+  <path class="line" d="M884 468 H939"/>
+  <rect class="silent" x="941" y="420" width="180" height="96" rx="16"/>
+  <text class="label" x="1031" y="454" text-anchor="middle">Routine work</text>
+  <text class="mono" x="1031" y="485" text-anchor="middle">SILENT</text>
+
+  <text class="meta" x="600" y="561" text-anchor="middle">Activation describes context. It never grants write approval or replaces the Write Gate.</text>
+</svg>

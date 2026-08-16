@@ -14,6 +14,8 @@ saved validation evidence are unchanged from the validated 0.1.1-beta baseline.
 - A copy-ready Prompt Library covering the supported development workflows.
 - A documentation landing page organized for beginners, practitioners, and maintainers.
 - GitHub-native Mermaid diagrams for request routing and approval boundaries.
+- Four accessible SVG documentation diagrams covering the product overview, workflow map, READ/WRITE
+  decision, and Active Skill Focus.
 
 ### Changed
 
@@ -24,6 +26,10 @@ saved validation evidence are unchanged from the validated 0.1.1-beta baseline.
 - Made major documentation paths clickable and added lightweight previous/home/next navigation.
 - Clarified that current live evidence belongs to the 0.1.1-beta runtime baseline and is not upgraded by
   these documentation changes.
+- Added an accurate workflow command reference, a first-five-tasks learning path, and clearer guidance
+  for approval, rejection, scope control, and natural follow-ups.
+- Expanded the Prompt Library with quick, detailed, read-only, follow-up, workflow, and approval guidance
+  for every supported workflow.
 
 ### Validation
 

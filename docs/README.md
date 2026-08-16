@@ -3,6 +3,25 @@
 Choose the shortest path that matches what you need. You can use Agent OS Skill without learning its
 validation vocabulary or reading the maintainer files.
 
+```mermaid
+flowchart TD
+    A[Start] --> B[Quick Start]
+    A --> C[Getting Started]
+    B --> D[How It Works]
+    C --> D
+    D --> E[Workflows]
+    D --> F[Approvals]
+    D --> G[Host Capabilities]
+    E --> H[Prompt Library]
+    I[Maintainers] --> J[SKILL.md]
+    I --> K[Policies]
+    I --> L[Tests]
+    I --> M[Validation]
+```
+
+New users should begin on the upper path. Runtime and validation files are available for maintainers but
+are not prerequisites for ordinary use.
+
 ## Start here
 
 - [Quick Start](quick-start.md) — load the Skill, run a read-only task, and see the Write Gate in two to

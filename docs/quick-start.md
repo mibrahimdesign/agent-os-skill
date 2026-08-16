@@ -3,6 +3,25 @@
 You can try Agent OS Skill in two to five minutes. It is a declarative package: Markdown and JSON, with
 no installer, telemetry, or background process.
 
+## Command cheat sheet
+
+Commands are optional shortcuts. Natural-language requests work too.
+
+```text
+UNDERSTAND PROJECT   Learn the repository                 READ
+REVIEW               Analyze without changing            READ
+FIX BUG              Diagnose and apply a controlled fix WRITE
+CREATE FEATURE       Add bounded functionality           WRITE
+IMPROVE UI UX        Improve interface quality           WRITE
+SECURITY REVIEW      Analyze concrete security risks     READ
+QUALITY CHECK        Check a change against its goal     READ
+READ DESIGN          Inspect or compare design evidence  READ
+PREPARE PROJECT      Explicit lightweight orientation    STRICT READ
+EXPORT STATE         Represent state as portable text    STRICT READ
+```
+
+See [Workflows](workflows.md) for the complete command reference and special constraints.
+
 ## 1. Load the Skill
 
 Use the mechanism your agent host supports:
@@ -62,6 +81,8 @@ Fix the most important issue you found.
 This changes the operation from read to write. You should see a compact workflow transition, followed by
 inspection and a scoped Write Gate. The agent must stop before source mutation.
 
+![Read work proceeds without approval; write work must stop at the Write Gate and wait.](assets/read-write-flow.svg)
+
 ```text
 WRITE GATE
 
@@ -96,6 +117,15 @@ APPROVE WRITE
 
 Any different reply withholds approval or changes the conversation. If an additional file becomes
 necessary, the agent must stop and request expanded approval.
+
+Useful scope controls are ordinary language, not special syntax:
+
+```text
+Only change this file.
+Do not modify the API layer.
+Review only. Do not fix anything.
+Stop after the analysis.
+```
 
 ## 4. Read the completion report
 

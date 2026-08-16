@@ -4,6 +4,11 @@ Natural-language requests route to the closest supported workflow. You usually d
 workflow yourself; explicit names are useful when a request could reasonably mean either review or
 implementation.
 
+Commands are optional shortcuts. `REVIEW Header.tsx` and “Review Header.tsx for correctness and
+maintainability without modifying it” both conceptually route to the same workflow.
+
+![The ten workflows grouped into orientation, analysis, and controlled change.](assets/workflow-map.svg)
+
 | Workflow | Authoritative file | Operation | Purpose |
 |---|---|---|---|
 | Understand Project | [understand-project.md](../workflows/understand-project.md) | Read-only | Build an evidence-based picture of architecture, dependencies, risks, and conventions. |
@@ -16,6 +21,21 @@ implementation.
 | Read Design | [read-design.md](../workflows/read-design.md) | Read-only | Extract facts from available design evidence without assuming a particular platform. |
 | Prepare Project *(optional Beta)* | [prepare-project.md](../workflows/prepare-project.md) | Strict read-only | Perform explicit session-start orientation; never runs automatically. |
 | Export State *(optional Beta)* | [export-state.md](../workflows/export-state.md) | Strict read-only | Describe portable conversation state for hosts without persistence. |
+
+## Command reference
+
+| Command | Copy-ready example | Approval behavior |
+|---|---|---|
+| `UNDERSTAND PROJECT` | `UNDERSTAND PROJECT for this repository` | No write approval; never mutates. |
+| `REVIEW` | `REVIEW src/components/Header.tsx` | No write approval; findings only. |
+| `FIX BUG` | `FIX BUG mobile header overflow` | Requires a scoped Write Gate and `APPROVE WRITE`. |
+| `CREATE FEATURE` | `CREATE FEATURE search empty state` | Requires a scoped Write Gate and `APPROVE WRITE`. |
+| `IMPROVE UI UX` | `IMPROVE UI UX checkout form` | Requires a scoped Write Gate and `APPROVE WRITE`. |
+| `SECURITY REVIEW` | `SECURITY REVIEW authentication flow` | No write approval; fixes route separately. |
+| `QUALITY CHECK` | `QUALITY CHECK the latest change` | No write approval; required fixes route separately. |
+| `READ DESIGN` | `READ DESIGN and compare with implementation` | No write approval; implementation routes separately. |
+| `PREPARE PROJECT` | `PREPARE PROJECT` | Explicit command only; zero writes and zero proposals. |
+| `EXPORT STATE` | `EXPORT STATE` | Explicit command only; emits text and saves nothing. |
 
 ## Routing examples
 
