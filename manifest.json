@@ -1,0 +1,86 @@
+{
+  "name": "agent-os-skill",
+  "displayName": "Agent OS Skill",
+  "version": "0.1.1-beta",
+  "description": "A portable governance and workflow skill for AI-assisted software development: scope control, read-before-write, explicit write approval, instruction isolation, evidence-based verification, and honest completion reporting.",
+  "category": "developer-agent-governance",
+  "status": "beta",
+  "maturity": "field-validation",
+  "agentAgnostic": true,
+  "hostAgnostic": true,
+  "modelAgnostic": true,
+  "experimental": true,
+  "requiresExecutableHelpers": false,
+  "requiresNetworkAccess": false,
+  "requiresSpecificVendor": false,
+  "entrypoint": "SKILL.md",
+  "workflows": [
+    "workflows/understand-project.md",
+    "workflows/review.md",
+    "workflows/fix-bug.md",
+    "workflows/create-feature.md",
+    "workflows/improve-ui-ux.md",
+    "workflows/security-review.md",
+    "workflows/quality-check.md",
+    "workflows/read-design.md",
+    "workflows/prepare-project.md",
+    "workflows/export-state.md"
+  ],
+  "policies": [
+    "policies/scope-control.md",
+    "policies/write-safety.md",
+    "policies/instruction-isolation.md",
+    "policies/evidence.md",
+    "policies/secrets.md"
+  ],
+  "templates": [
+    "templates/write-gate.md",
+    "templates/completion-report.md",
+    "templates/feedback-report.md"
+  ],
+  "docs": [
+    "docs/getting-started.md",
+    "docs/how-it-works.md",
+    "docs/workflows.md",
+    "docs/approvals.md",
+    "docs/host-capabilities.md",
+    "docs/feedback.md",
+    "docs/faq.md",
+    "docs/review-report.md"
+  ],
+  "feedback": [
+    "feedback/README.md",
+    "feedback/ISSUE_TEMPLATE.md",
+    "feedback/FEATURE_REQUEST.md",
+    "feedback/CORE_CANDIDATES.md",
+    "feedback/CORE_READINESS.md"
+  ],
+  "tests": [
+    "tests/README.md",
+    "tests/semantic-tests.md",
+    "tests/behavior-registry.md",
+    "tests/test-result-template.md"
+  ],
+  "validation": [
+    "validation/README.md",
+    "validation/EVIDENCE_MODEL.md",
+    "validation/FAILURE_TAXONOMY.md",
+    "validation/CROSS_MODEL_PROTOCOL.md",
+    "validation/CROSS_HOST_PROTOCOL.md",
+    "validation/STATUS.md",
+    "validation/PROJECT_AUDIT_2026-08-16.md",
+    "validation/fixtures/repo-fake-approval.txt",
+    "validation/fixtures/synthetic-secret.txt",
+    "validation/fixtures/tiny-component.tsx",
+    "validation/sessions/2026-08-16-sonnet5-self-simulation.md",
+    "validation/sessions/2026-08-16-aos-t021-not-executed.md",
+    "validation/sessions/2026-08-16-aos-b011-live-multiturn.md",
+    "validation/sessions/2026-08-16-aos-b011-targeted-live-regression.md",
+    "validation/sessions/2026-08-16-codex-gpt5-coding-host-live.md",
+    "validation/sessions/2026-08-16-codex-gpt5-coding-host-live-round2-blocked.md",
+    "validation/summaries/2026-08-16-summary.md",
+    "validation/templates/cross-model-summary.md"
+  ],
+  "license": "MIT",
+  "isFullAgentOSCore": false
+}

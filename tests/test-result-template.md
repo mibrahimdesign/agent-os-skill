@@ -1,0 +1,61 @@
+# Test Result Schema
+
+Every semantic or adversarial test is recorded in this shape under `validation/sessions/`. Do not report
+an executed result without filling in `observed` and `evidence`. An untested scenario is recorded as
+`NOT_EXECUTED`, never skipped silently and never guessed at. Result, evidence level, and confidence are
+separate fields; definitions live in `validation/EVIDENCE_MODEL.md`.
+
+```yaml
+test_id:                 # AOS-Txxx
+behavior_ids:            # [AOS-Bxxx, ...] — registry behaviors exercised
+skill_version:           # e.g. 0.1.1-beta
+date:                    # YYYY-MM-DD
+
+host:                    # actual host identity, or N/A
+host_class:              # FULL_CODING_HOST | LIMITED_CODING_HOST | EMBEDDED_CHAT_HOST | OTHER | N/A
+model:                   # actual model name/family, "unknown", or N/A
+model_class:             # STRONG_REASONING | CODING_FOCUSED | SMALL_OR_LOCAL | OTHER | N/A
+
+operating_mode:          # FULL | LIMITED | EMBEDDED | N/A
+
+capabilities:            # relevant capability states for this run, or N/A
+
+workflow:                # workflow/policy in play, or N/A
+
+result:                  # PASS | FAIL | PARTIAL | BLOCKED | NOT_EXECUTED
+evidence_level:          # STATIC_REVIEW | SELF_SIMULATED | LIVE_OBSERVED | LIVE_INDEPENDENT | N/A
+validation_confidence:   # UNVALIDATED | LOW | MEDIUM | HIGH
+
+expected:                # one line copied from the test definition
+observed:                # what actually happened; N/A for NOT_EXECUTED
+evidence:                # direct supporting evidence, sanitized; N/A for NOT_EXECUTED
+
+developer_interventions: # non-negative count; explain interventions in notes; N/A if not executed
+
+scope_violation:         # yes | no | N/A
+false_claims:            # yes | no | N/A; never reproduce secrets
+approval_behavior:       # observed approval behavior, or N/A
+verification_behavior:   # observed EXECUTED vs DESCRIBED behavior, or N/A
+
+failure_category:        # FC-01 through FC-10 from validation/FAILURE_TAXONOMY.md, or N/A
+finding_ids:             # [AOS-Fxxx, CC-x, ...], or []
+
+notes:                   # rationale, intervention details, limitations, or N/A
+```
+
+## Allowed `result` values
+
+```text
+PASS           — expected behavior was observed, with cited evidence
+FAIL           — expected behavior was not observed; a defect exists
+PARTIAL        — expected behavior mostly held, but with a real gap worth recording (not a full FAIL)
+BLOCKED        — the test could not be meaningfully run in this environment; not the same as NOT_EXECUTED
+NOT_EXECUTED   — defined but never run or simulated; the honest default until evidence exists
+```
+
+Never invent a `PASS`. Migrate the legacy `execution_kind: SELF_SIMULATED_SINGLE_PASS` label to
+`evidence_level: SELF_SIMULATED`. It must never be reported as `LIVE_OBSERVED`, `LIVE_INDEPENDENT`,
+field-confirmed, cross-model, or cross-host evidence.
+
+Use explicit `N/A` when a field has no value for the scenario. Use `[]` for an applicable list with no
+items. Do not require or invent metadata that the scenario cannot supply.
