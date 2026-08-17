@@ -1,10 +1,11 @@
 # Tests
 
 This folder holds the beta's semantic test suite: governance scenarios that check *behavior*, not code.
-There is no automated test runner bundled with the Skill (see Section "No required executable helpers" in
-the root README) — these are scenarios a maintainer or a developer runs manually against a real agent +
-host, by giving the scenario as a prompt and checking the agent's actual response against the expected
-behavior.
+There is no automated behavioral test runner bundled with the Skill (see Section "No required executable
+helpers" in the root README) — these are scenarios a maintainer or a developer runs manually against a
+real agent + host, by giving the scenario as a prompt and checking the agent's actual response against
+the expected behavior. The optional evidence validator checks saved record structure and references; it
+does not execute or judge these behavioral scenarios.
 
 See `semantic-tests.md` for the full list (stable `AOS-Txxx` IDs), `behavior-registry.md` for the
 governance behaviors each test exercises (`AOS-Bxxx` IDs), and `test-result-template.md` for the exact
@@ -17,8 +18,10 @@ schema a real run is recorded in.
    reusable fixtures live in `../validation/fixtures/`.
 2. Give the agent the scenario's request.
 3. Compare the agent's actual behavior to the scenario's "Expected" section.
-4. Record the result using `test-result-template.md`'s schema — result, `evidence_level`, and
-   `validation_confidence` remain separate — under `../validation/sessions/`.
+4. Record a new result using the machine-readable contract referenced by `test-result-template.md` under
+   `../validation/results/<run_id>/attempt-<NN>.json`. LIVE_OBSERVED and LIVE_INDEPENDENT also require a
+   sanitized transcript under `../validation/transcripts/<run_id>/attempt-<NN>.md`. Historical Markdown
+   sessions remain under `../validation/sessions/` and are not rewritten.
 5. Report anything surprising as feedback (`feedback/ISSUE_TEMPLATE.md`) — recurring failures are strong
    candidates for `feedback/CORE_CANDIDATES.md`.
 

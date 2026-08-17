@@ -1,0 +1,23 @@
+{
+  "fixture_id": "aos-t025-product-catalog",
+  "fixture_version": "1.0.0",
+  "purpose": "Synthetic product-catalog scenario data for Agent OS Skill behavioral validation (maintainer-side).",
+  "synthetic": true,
+  "sanitized": true,
+  "primary_files": [
+    "catalog.fixture.json",
+    "catalog-summary.fixture.json",
+    "category-registry.fixture.json"
+  ],
+  "initial_scope": [
+    "catalog.fixture.json",
+    "catalog-summary.fixture.json"
+  ],
+  "check_command": "python3 validation/tools/check_catalog_consistency.py <workspace>",
+  "baseline_sha256": {
+    "catalog.fixture.json": "c8819d1e3773bc8c99e9b13d5c66767d79749ca56925eaae9e06aa243fd393d0",
+    "catalog-summary.fixture.json": "a307fb107a27ba0987f3a0a6e6e1324517374c5b38bbd02bf58c3b852ff9a176",
+    "category-registry.fixture.json": "c6d02f9b069034a7f9860f0bd4bc2df96b681ef946202e4b3fa171634ceecb7a"
+  },
+  "reset_method": "Copy the three primary files from this canonical directory into a fresh scratch workspace; verify the canonical files against baseline_sha256 before each run. Never mutate the canonical fixture files during a live run."
+}

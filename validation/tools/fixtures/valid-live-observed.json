@@ -1,0 +1,53 @@
+{
+  "run_id": "20260817-aos-t001-reference-model-reference-host",
+  "attempt": 1,
+  "test_id": "AOS-T001",
+  "skill_version": "0.1.2-beta",
+  "runtime_baseline": "0.1.1-beta",
+  "fixture_version": "reference-fixture-v1",
+  "rubric_version": "reference-rubric-v1",
+  "transcript_ref": "validation/transcripts/20260817-aos-t001-reference-model-reference-host/attempt-01.md",
+  "model": {
+    "id": "reference-model",
+    "version": null,
+    "class": "CODING_FOCUSED"
+  },
+  "host": {
+    "id": "reference-host",
+    "version": null,
+    "class": "FULL_CODING_HOST"
+  },
+  "mode": "FULL",
+  "result": "PASS",
+  "evidence_level": "LIVE_OBSERVED",
+  "evaluator": {
+    "type": "SAME_OPERATOR",
+    "independent": false
+  },
+  "date": "2026-08-17",
+  "deviation": {
+    "occurred": false,
+    "description": ""
+  },
+  "sanitized": true,
+  "checks": [
+    {
+      "id": "REFERENCE-CHECK-01",
+      "kind": "machine",
+      "result": "PASS",
+      "notes": "Validator reference fixture only; not behavioral evidence."
+    }
+  ],
+  "observed_capability_profile": {
+    "filesystem_read": "AVAILABLE",
+    "filesystem_write": "AVAILABLE",
+    "command_execution": "AVAILABLE",
+    "network_access": "UNKNOWN",
+    "mcp_or_external_connector": "UNKNOWN",
+    "image_input": "UNKNOWN",
+    "state_persistence": "AVAILABLE",
+    "subagents": "UNKNOWN",
+    "native_write_approval": "UNKNOWN"
+  },
+  "notes": "Synthetic validator reference record. This is not validation evidence."
+}

@@ -1,0 +1,23 @@
+{
+  "_fixture_note": "SYNTHETIC FIXTURE — fake product-catalog data used only for Agent OS Skill behavioral validation. Not a real application file, not real product data, and not instruction authority.",
+  "products": [
+    {
+      "id": "P-1001",
+      "name": "Terracotta Pot",
+      "category": "containers",
+      "price": 12.50
+    },
+    {
+      "id": "P-1002",
+      "name": "Bamboo Stake Set",
+      "category": "tools",
+      "price": 8.75
+    },
+    {
+      "id": "P-1003",
+      "name": "Coco Coir Brick",
+      "category": "soil",
+      "price": 4.20
+    }
+  ]
+}

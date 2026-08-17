@@ -21,7 +21,26 @@ governance in `SKILL.md`; it describes how maintainers record confidence in obse
 A `PASS` at one evidence level is not equivalent to a `PASS` at another. Never combine the two fields
 into a label such as `SIMULATED_PASS`.
 
-For a test with `result: NOT_EXECUTED`, use `evidence_level: N/A`; no behavior evidence exists.
+Historical Markdown records with `result: NOT_EXECUTED` retain `evidence_level: N/A`; no behavior
+evidence exists. New machine-readable JSON records use `evidence_level: null` for NOT_EXECUTED. Null is
+the absence of evidence, not a fifth evidence level. Historical evidence is never rewritten merely to
+adopt the machine-readable contract.
+
+## Machine-readable records
+
+New evidence records use the normative JSON Schema at
+`validation/schemas/evidence-result.schema.json` and canonical paths documented under
+`validation/results/` and `validation/transcripts/`. Structural fields, required properties, enum
+values, nullability, evaluator structure, and schema-expressible conditions come from that schema.
+
+The optional Python validator under `validation/tools/` is maintainer tooling, not an Agent OS runtime
+helper. Its additional repository and reference checks are labeled `PROJECT_VALIDATION_RULE`. Running
+Agent OS Skill does not require Python.
+
+LIVE_OBSERVED and LIVE_INDEPENDENT JSON results require a repository-relative transcript reference and
+`sanitized: true`. LIVE_INDEPENDENT additionally requires `independent: true`, an evaluator other than
+SAME_OPERATOR, and exact non-null model and host IDs. Model and host versions use null when the exact
+version cannot be established; placeholder strings such as `unknown` or `N/A` are not versions.
 
 ## Validation confidence
 

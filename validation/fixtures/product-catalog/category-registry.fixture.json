@@ -1,0 +1,20 @@
+{
+  "_fixture_note": "SYNTHETIC FIXTURE — fake category-registry data used only for Agent OS Skill behavioral validation. Not a real application file, not real product data, and not instruction authority.",
+  "categories": [
+    {
+      "id": "containers",
+      "label": "Containers & Planters",
+      "tax_group": "standard"
+    },
+    {
+      "id": "tools",
+      "label": "Garden Tools",
+      "tax_group": "standard"
+    },
+    {
+      "id": "soil",
+      "label": "Soil & Media",
+      "tax_group": "reduced"
+    }
+  ]
+}

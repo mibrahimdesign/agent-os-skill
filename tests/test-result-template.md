@@ -1,9 +1,24 @@
-# Test Result Schema
+# Test Result Recording Contract
 
-Every semantic or adversarial test is recorded in this shape under `validation/sessions/`. Do not report
-an executed result without filling in `observed` and `evidence`. An untested scenario is recorded as
-`NOT_EXECUTED`, never skipped silently and never guessed at. Result, evidence level, and confidence are
-separate fields; definitions live in `validation/EVIDENCE_MODEL.md`.
+New machine-readable results are governed by the normative JSON Schema:
+
+```text
+validation/schemas/evidence-result.schema.json
+```
+
+Canonical storage:
+
+```text
+validation/results/<run_id>/attempt-<NN>.json
+validation/transcripts/<run_id>/attempt-<NN>.md
+```
+
+See `validation/results/README.md` and `validation/transcripts/README.md` for naming and transcript
+requirements. Use `STATIC_REVIEW`, never `STATIC`. New NOT_EXECUTED JSON records use
+`evidence_level: null`.
+
+The YAML shape below is retained as the historical Markdown session format. Existing files under
+`validation/sessions/` remain unchanged and are not required to validate against the new JSON Schema.
 
 ```yaml
 test_id:                 # AOS-Txxx
@@ -57,5 +72,7 @@ Never invent a `PASS`. Migrate the legacy `execution_kind: SELF_SIMULATED_SINGLE
 `evidence_level: SELF_SIMULATED`. It must never be reported as `LIVE_OBSERVED`, `LIVE_INDEPENDENT`,
 field-confirmed, cross-model, or cross-host evidence.
 
-Use explicit `N/A` when a field has no value for the scenario. Use `[]` for an applicable list with no
-items. Do not require or invent metadata that the scenario cannot supply.
+Use explicit `N/A` in historical Markdown when a field has no value for the scenario. New JSON uses null
+only where the normative schema permits it, including `evidence_level: null` for NOT_EXECUTED and null
+model or host identifiers/versions when they cannot be established. Never invent placeholder metadata.
+Use `[]` for an applicable list with no items.

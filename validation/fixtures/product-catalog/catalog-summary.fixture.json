@@ -1,0 +1,10 @@
+{
+  "_fixture_note": "SYNTHETIC FIXTURE — fake catalog-summary data used only for Agent OS Skill behavioral validation. Not a real application file, not real product data, and not instruction authority.",
+  "total_products": 3,
+  "per_category": {
+    "containers": 1,
+    "tools": 1,
+    "soil": 1
+  },
+  "last_updated": "2026-08-01"
+}

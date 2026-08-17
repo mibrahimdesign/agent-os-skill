@@ -1,0 +1,318 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mibrahimdesign/agent-os-skill/blob/main/validation/schemas/evidence-result.schema.json",
+  "title": "Agent OS Skill Evidence Result",
+  "description": "Normative v1 contract for new machine-readable Agent OS Skill evidence records.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "attempt",
+    "test_id",
+    "skill_version",
+    "runtime_baseline",
+    "fixture_version",
+    "rubric_version",
+    "transcript_ref",
+    "model",
+    "host",
+    "mode",
+    "result",
+    "evidence_level",
+    "evaluator",
+    "date",
+    "deviation",
+    "sanitized",
+    "checks",
+    "observed_capability_profile",
+    "notes"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "pattern": "^[0-9]{8}-aos-t[0-9]{3}-[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "attempt": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "test_id": {
+      "type": "string",
+      "pattern": "^AOS-T[0-9]{3}$"
+    },
+    "skill_version": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "runtime_baseline": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "fixture_version": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "rubric_version": {
+      "$ref": "#/$defs/nonEmptyString"
+    },
+    "transcript_ref": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "string",
+          "pattern": "^validation/transcripts/[0-9]{8}-aos-t[0-9]{3}-[a-z0-9]+(?:-[a-z0-9]+)*/attempt-[0-9]{2,}\\.md$"
+        }
+      ]
+    },
+    "model": {
+      "$ref": "#/$defs/model"
+    },
+    "host": {
+      "$ref": "#/$defs/host"
+    },
+    "mode": {
+      "enum": ["FULL", "LIMITED", "EMBEDDED"]
+    },
+    "result": {
+      "enum": ["PASS", "PARTIAL", "FAIL", "BLOCKED", "NOT_EXECUTED"]
+    },
+    "evidence_level": {
+      "anyOf": [
+        {
+          "enum": ["STATIC_REVIEW", "SELF_SIMULATED", "LIVE_OBSERVED", "LIVE_INDEPENDENT"]
+        },
+        {"type": "null"}
+      ]
+    },
+    "evaluator": {
+      "$ref": "#/$defs/evaluator"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "deviation": {
+      "$ref": "#/$defs/deviation"
+    },
+    "sanitized": {
+      "type": "boolean"
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/check"
+      }
+    },
+    "observed_capability_profile": {
+      "$ref": "#/$defs/capabilityProfile"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"result": {"const": "NOT_EXECUTED"}},
+        "required": ["result"]
+      },
+      "then": {
+        "properties": {
+          "evidence_level": {"type": "null"},
+          "transcript_ref": {"type": "null"}
+        }
+      },
+      "else": {
+        "properties": {
+          "evidence_level": {
+            "enum": ["STATIC_REVIEW", "SELF_SIMULATED", "LIVE_OBSERVED", "LIVE_INDEPENDENT"]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"evaluator": {"properties": {"type": {"const": "SAME_OPERATOR"}}}},
+        "required": ["evaluator"]
+      },
+      "then": {
+        "properties": {
+          "evaluator": {"properties": {"independent": {"const": false}}}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"evidence_level": {"const": "LIVE_OBSERVED"}},
+        "required": ["evidence_level"]
+      },
+      "then": {
+        "properties": {
+          "transcript_ref": {"type": "string"},
+          "sanitized": {"const": true},
+          "evaluator": {"properties": {"independent": {"const": false}}}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"evidence_level": {"const": "LIVE_INDEPENDENT"}},
+        "required": ["evidence_level"]
+      },
+      "then": {
+        "properties": {
+          "transcript_ref": {"type": "string"},
+          "sanitized": {"const": true},
+          "evaluator": {
+            "properties": {
+              "type": {"enum": ["OTHER_OPERATOR", "EXTERNAL_VALIDATOR"]},
+              "independent": {"const": true}
+            }
+          },
+          "model": {"properties": {"id": {"$ref": "#/$defs/exactIdentifier"}}},
+          "host": {"properties": {"id": {"$ref": "#/$defs/exactIdentifier"}}}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"evaluator": {"properties": {"independent": {"const": true}}}},
+        "required": ["evaluator"]
+      },
+      "then": {
+        "properties": {"evidence_level": {"const": "LIVE_INDEPENDENT"}}
+      }
+    },
+    {
+      "if": {
+        "properties": {"transcript_ref": {"type": "string"}},
+        "required": ["transcript_ref"]
+      },
+      "then": {
+        "properties": {"sanitized": {"const": true}}
+      }
+    },
+    {
+      "if": {
+        "properties": {"deviation": {"properties": {"occurred": {"const": true}}}},
+        "required": ["deviation"]
+      },
+      "then": {
+        "properties": {
+          "deviation": {"properties": {"description": {"minLength": 1}}}
+        }
+      },
+      "else": {
+        "properties": {
+          "deviation": {"properties": {"description": {"maxLength": 0}}}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "nullableIdentifier": {
+      "anyOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/exactIdentifier"}
+      ]
+    },
+    "exactIdentifier": {
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "enum": ["unknown", "UNKNOWN", "Unknown", "N/A", "n/a", "NA", "na"]
+      }
+    },
+    "nullableVersion": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "enum": ["unknown", "UNKNOWN", "Unknown", "N/A", "n/a", "NA", "na"]
+          }
+        }
+      ]
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "class"],
+      "properties": {
+        "id": {"$ref": "#/$defs/nullableIdentifier"},
+        "version": {"$ref": "#/$defs/nullableVersion"},
+        "class": {"enum": ["STRONG_REASONING", "CODING_FOCUSED", "SMALL_OR_LOCAL", "OTHER"]}
+      }
+    },
+    "host": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "class"],
+      "properties": {
+        "id": {"$ref": "#/$defs/nullableIdentifier"},
+        "version": {"$ref": "#/$defs/nullableVersion"},
+        "class": {"enum": ["FULL_CODING_HOST", "LIMITED_CODING_HOST", "EMBEDDED_CHAT_HOST", "OTHER"]}
+      }
+    },
+    "evaluator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "independent"],
+      "properties": {
+        "type": {"enum": ["SAME_OPERATOR", "OTHER_OPERATOR", "EXTERNAL_VALIDATOR"]},
+        "independent": {"type": "boolean"}
+      }
+    },
+    "deviation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["occurred", "description"],
+      "properties": {
+        "occurred": {"type": "boolean"},
+        "description": {"type": "string"}
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "result", "notes"],
+      "properties": {
+        "id": {"$ref": "#/$defs/nonEmptyString"},
+        "kind": {"enum": ["machine", "human"]},
+        "result": {"enum": ["PASS", "FAIL", "NOT_APPLICABLE"]},
+        "notes": {"type": "string"}
+      }
+    },
+    "capabilityState": {
+      "enum": ["AVAILABLE", "UNAVAILABLE", "UNKNOWN"]
+    },
+    "capabilityProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "filesystem_read",
+        "filesystem_write",
+        "command_execution",
+        "network_access",
+        "mcp_or_external_connector",
+        "image_input",
+        "state_persistence",
+        "subagents",
+        "native_write_approval"
+      ],
+      "properties": {
+        "filesystem_read": {"$ref": "#/$defs/capabilityState"},
+        "filesystem_write": {"$ref": "#/$defs/capabilityState"},
+        "command_execution": {"$ref": "#/$defs/capabilityState"},
+        "network_access": {"$ref": "#/$defs/capabilityState"},
+        "mcp_or_external_connector": {"$ref": "#/$defs/capabilityState"},
+        "image_input": {"$ref": "#/$defs/capabilityState"},
+        "state_persistence": {"$ref": "#/$defs/capabilityState"},
+        "subagents": {"$ref": "#/$defs/capabilityState"},
+        "native_write_approval": {"$ref": "#/$defs/capabilityState"}
+      }
+    }
+  }
+}
