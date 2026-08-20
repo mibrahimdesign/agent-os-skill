@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-labelledby="title desc">
+  <title id="title">Agent OS Skill operating modes: FULL, LIMITED, EMBEDDED</title>
+  <desc id="desc">Three operating modes describe available capability, not honesty. FULL has filesystem and command execution. LIMITED is missing some required capability and adapts honestly. EMBEDDED has no persistence and only proposes changes, never claiming a save.</desc>
+  <style>
+    :root { color-scheme: light dark; }
+    .bg { fill: #f8fafc; }
+    .full { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2.5; }
+    .limited { fill: #fff7ed; stroke: #ea580c; stroke-width: 2.5; }
+    .embedded { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2.5; }
+    .banner { fill: #eff6ff; stroke: #2563eb; stroke-width: 2; }
+    .title { fill: #0f172a; font: 700 22px ui-sans-serif, system-ui, sans-serif; }
+    .label { fill: #0f172a; font: 800 19px ui-sans-serif, system-ui, sans-serif; }
+    .meta { fill: #334155; font: 600 13.5px ui-sans-serif, system-ui, sans-serif; }
+    .bullet { fill: #475569; font: 500 13px ui-sans-serif, system-ui, sans-serif; }
+    .bannertext { fill: #1d4ed8; font: 650 15px ui-sans-serif, system-ui, sans-serif; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0d1117; }
+      .full { fill: #052e16; stroke: #4ade80; }
+      .limited { fill: #431407; stroke: #fb923c; }
+      .embedded { fill: #2e1065; stroke: #a78bfa; }
+      .banner { fill: #102445; stroke: #60a5fa; }
+      .title, .label { fill: #f8fafc; }
+      .meta, .bullet { fill: #cbd5e1; }
+      .bannertext { fill: #93c5fd; }
+    }
+  </style>
+  <rect class="bg" width="1200" height="460" rx="24"/>
+  <text class="title" x="600" y="42" text-anchor="middle">Capability changes what runs. It never changes what may be claimed.</text>
+
+  <!-- FULL -->
+  <rect class="full" x="24" y="70" width="368" height="290" rx="18"/>
+  <text class="label" x="208" y="110" text-anchor="middle">FULL</text>
+  <text class="meta" x="208" y="134" text-anchor="middle">Filesystem + command execution verified</text>
+  <text class="bullet" x="52" y="170">• Inspects and modifies a real project</text>
+  <text class="bullet" x="52" y="196">• Verifies with real, run commands</text>
+  <text class="bullet" x="52" y="222">• Claims backed by EXECUTED evidence</text>
+  <text class="bullet" x="52" y="248">• Write Gate leads directly to a SAVED state</text>
+
+  <!-- LIMITED -->
+  <rect class="limited" x="416" y="70" width="368" height="290" rx="18"/>
+  <text class="label" x="600" y="110" text-anchor="middle">LIMITED</text>
+  <text class="meta" x="600" y="134" text-anchor="middle">One or more capabilities missing</text>
+  <text class="bullet" x="444" y="170">• Adapts the workflow, does not invent</text>
+  <text class="bullet" x="444" y="196">• States plainly what is unavailable</text>
+  <text class="bullet" x="444" y="222">• Verification marked DESCRIBED where</text>
+  <text class="bullet" x="444" y="244">  it could not actually run</text>
+  <text class="bullet" x="444" y="270">• Still requires APPROVE WRITE to mutate</text>
+
+  <!-- EMBEDDED -->
+  <rect class="embedded" x="808" y="70" width="368" height="290" rx="18"/>
+  <text class="label" x="992" y="110" text-anchor="middle">EMBEDDED</text>
+  <text class="meta" x="992" y="134" text-anchor="middle">No persistence capability</text>
+  <text class="bullet" x="836" y="170">• Analyzes, reviews, and proposes only</text>
+  <text class="bullet" x="836" y="196">• Produces PROPOSED STATE UPDATE blocks</text>
+  <text class="bullet" x="836" y="222">• Never claims a file was saved</text>
+  <text class="bullet" x="836" y="248">• Same G1-G10 rules, same honesty bar</text>
+
+  <rect class="banner" x="24" y="386" width="1152" height="56" rx="14"/>
+  <text class="bannertext" x="600" y="420" text-anchor="middle">Less capability changes what Agent OS can execute. It does not change what Agent OS may claim.</text>
+</svg>

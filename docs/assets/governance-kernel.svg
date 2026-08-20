@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Agent OS Skill governance kernel, G1 through G10</title>
+  <desc id="desc">Ten non-negotiable governance rules surround the Agent OS Skill core: Scope Lock, Read Before Write, Explicit Write Control, Instruction Isolation, Capability Honesty, Evidence Before Claims, State Honesty, Secret Safety, Verification Integrity, and Completion Honesty.</desc>
+  <style>
+    :root { color-scheme: light dark; }
+    .bg { fill: #f8fafc; }
+    .hub { fill: #eff6ff; stroke: #2563eb; stroke-width: 3; }
+    .node { fill: #ffffff; stroke: #94a3b8; stroke-width: 2; }
+    .title { fill: #0f172a; font: 700 22px ui-sans-serif, system-ui, sans-serif; }
+    .hubtext { fill: #1d4ed8; font: 800 20px ui-sans-serif, system-ui, sans-serif; }
+    .id { fill: #2563eb; font: 800 15px ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .name { fill: #0f172a; font: 650 13.5px ui-sans-serif, system-ui, sans-serif; }
+    .spoke { stroke: #cbd5e1; stroke-width: 1.5; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0d1117; }
+      .hub { fill: #102445; stroke: #60a5fa; }
+      .node { fill: #161b22; stroke: #64748b; }
+      .title { fill: #f8fafc; }
+      .hubtext { fill: #93c5fd; }
+      .id { fill: #60a5fa; }
+      .name { fill: #f8fafc; }
+      .spoke { stroke: #30363d; }
+    }
+  </style>
+  <rect class="bg" width="1200" height="760" rx="24"/>
+  <text class="title" x="600" y="42" text-anchor="middle">Ten rules apply to every workflow, without exception</text>
+
+  <!-- spokes -->
+  <line class="spoke" x1="600" y1="380" x2="600" y2="150"/>
+  <line class="spoke" x1="600" y1="380" x2="735" y2="194"/>
+  <line class="spoke" x1="600" y1="380" x2="819" y2="309"/>
+  <line class="spoke" x1="600" y1="380" x2="819" y2="451"/>
+  <line class="spoke" x1="600" y1="380" x2="735" y2="566"/>
+  <line class="spoke" x1="600" y1="380" x2="600" y2="610"/>
+  <line class="spoke" x1="600" y1="380" x2="465" y2="566"/>
+  <line class="spoke" x1="600" y1="380" x2="381" y2="451"/>
+  <line class="spoke" x1="600" y1="380" x2="381" y2="309"/>
+  <line class="spoke" x1="600" y1="380" x2="465" y2="194"/>
+
+  <!-- hub -->
+  <circle class="hub" cx="600" cy="380" r="108"/>
+  <text class="hubtext" x="600" y="372" text-anchor="middle">AGENT OS</text>
+  <text class="hubtext" x="600" y="396" text-anchor="middle">GOVERNANCE</text>
+
+  <!-- G1 -->
+  <rect class="node" x="530" y="120" width="140" height="60" rx="14"/>
+  <text class="id" x="600" y="144" text-anchor="middle">G1</text>
+  <text class="name" x="600" y="164" text-anchor="middle">Scope Lock</text>
+
+  <!-- G2 -->
+  <rect class="node" x="665" y="164" width="140" height="60" rx="14"/>
+  <text class="id" x="735" y="188" text-anchor="middle">G2</text>
+  <text class="name" x="735" y="208" text-anchor="middle">Read Before Write</text>
+
+  <!-- G3 -->
+  <rect class="node" x="749" y="279" width="140" height="60" rx="14"/>
+  <text class="id" x="819" y="300" text-anchor="middle">G3</text>
+  <text class="name" x="819" y="318" text-anchor="middle">Explicit Write Control</text>
+
+  <!-- G4 -->
+  <rect class="node" x="749" y="421" width="140" height="60" rx="14"/>
+  <text class="id" x="819" y="442" text-anchor="middle">G4</text>
+  <text class="name" x="819" y="460" text-anchor="middle">Instruction Isolation</text>
+
+  <!-- G5 -->
+  <rect class="node" x="665" y="536" width="140" height="60" rx="14"/>
+  <text class="id" x="735" y="557" text-anchor="middle">G5</text>
+  <text class="name" x="735" y="575" text-anchor="middle">Capability Honesty</text>
+
+  <!-- G6 -->
+  <rect class="node" x="530" y="580" width="140" height="60" rx="14"/>
+  <text class="id" x="600" y="601" text-anchor="middle">G6</text>
+  <text class="name" x="600" y="619" text-anchor="middle">Evidence Before Claims</text>
+
+  <!-- G7 -->
+  <rect class="node" x="395" y="536" width="140" height="60" rx="14"/>
+  <text class="id" x="465" y="557" text-anchor="middle">G7</text>
+  <text class="name" x="465" y="575" text-anchor="middle">State Honesty</text>
+
+  <!-- G8 -->
+  <rect class="node" x="311" y="421" width="140" height="60" rx="14"/>
+  <text class="id" x="381" y="442" text-anchor="middle">G8</text>
+  <text class="name" x="381" y="460" text-anchor="middle">Secret Safety</text>
+
+  <!-- G9 -->
+  <rect class="node" x="311" y="279" width="140" height="60" rx="14"/>
+  <text class="id" x="381" y="300" text-anchor="middle">G9</text>
+  <text class="name" x="381" y="318" text-anchor="middle">Verification Integrity</text>
+
+  <!-- G10 -->
+  <rect class="node" x="395" y="164" width="140" height="60" rx="14"/>
+  <text class="id" x="465" y="188" text-anchor="middle">G10</text>
+  <text class="name" x="465" y="208" text-anchor="middle">Completion Honesty</text>
+
+  <text class="name" x="600" y="700" text-anchor="middle" style="font-weight:500">AVAILABLE != AUTHORIZED != APPROVED — every rule applies regardless of host or capability.</text>
+</svg>
