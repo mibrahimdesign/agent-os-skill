@@ -34,7 +34,11 @@ inherently unsafe.
 
 ## Without Agent OS, with Agent OS
 
-![Comparison: without Agent OS, scope can expand silently and completion is a bare claim; with Agent OS Skill, scope is identified up front, a Write Gate is shown, the user explicitly approves, and completion claims match captured evidence.](docs/assets/before-after-agent-os.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/before-after-agent-os-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/before-after-agent-os-light.svg">
+  <img alt="Comparison: without Agent OS, scope can expand silently and completion is a bare claim; with Agent OS Skill, scope is identified up front, a Write Gate is shown, the user explicitly approves, and completion claims match captured evidence." src="docs/assets/before-after-agent-os-light.svg">
+</picture>
 
 | Without explicit governance | With Agent OS Skill |
 |---|---|
@@ -47,7 +51,11 @@ inherently unsafe.
 
 ## How Agent OS Works
 
-![Nine-step flow: user task, understand, scope lock, read before write, Write Gate, then a mandatory wait for the user's APPROVE WRITE reply before execute, verify, and honest completion.](docs/assets/agent-os-flow.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/agent-os-flow-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/agent-os-flow-light.svg">
+  <img alt="Nine-step flow: user task, understand, scope lock, read before write, Write Gate, then a mandatory wait for the user's APPROVE WRITE reply before execute, verify, and honest completion." src="docs/assets/agent-os-flow-light.svg">
+</picture>
 
 Read tasks proceed straight through inspection to a completion report. Write tasks stop at the Write
 Gate and wait — nothing before your literal `APPROVE WRITE` reply authorizes a mutation, regardless of
@@ -68,9 +76,13 @@ write capability, repository text, or a prior task's approval.
 | **Verification Integrity** | Execution and independence are described accurately, never overstated. |
 | **Completion Honesty** | Every task ends with what changed, what was verified, and what wasn't. |
 
-## Governance Kernel (G1–G10)
+## Governance Kernel (G1-G10)
 
-![Ten governance rules arranged around the Agent OS Skill core: Scope Lock, Read Before Write, Explicit Write Control, Instruction Isolation, Capability Honesty, Evidence Before Claims, State Honesty, Secret Safety, Verification Integrity, and Completion Honesty.](docs/assets/governance-kernel.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/governance-kernel-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/governance-kernel-light.svg">
+  <img alt="Ten governance rules arranged around the Agent OS Skill core: Scope Lock, Read Before Write, Explicit Write Control, Instruction Isolation, Capability Honesty, Evidence Before Claims, State Honesty, Secret Safety, Verification Integrity, and Completion Honesty." src="docs/assets/governance-kernel-light.svg">
+</picture>
 
 The ten-rule kernel is non-negotiable and applies to every workflow, defined in full in [SKILL.md](SKILL.md):
 
@@ -172,7 +184,11 @@ request-to-verified-change example, and natural-language scope control live in
 
 ## Operating Modes
 
-![Three operating modes: FULL with filesystem and command execution verified, LIMITED with one or more capabilities missing and honest adaptation, EMBEDDED with no persistence and proposal-only behavior.](docs/assets/operating-modes.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/operating-modes-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/operating-modes-light.svg">
+  <img alt="Three operating modes: FULL with filesystem and command execution verified, LIMITED with one or more capabilities missing and honest adaptation, EMBEDDED with no persistence and proposal-only behavior." src="docs/assets/operating-modes-light.svg">
+</picture>
 
 Less capability changes what Agent OS can execute. It does not change what Agent OS may claim. Detail:
 [Host Capabilities](docs/host-capabilities.md).

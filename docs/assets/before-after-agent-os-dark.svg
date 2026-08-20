@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">The same request, without and with Agent OS Skill</title>
+  <desc id="desc">Without governance, an agent can silently expand scope, run unverified checks, and claim completion. With Agent OS Skill, the same request produces identified scope, an inspected state, a visible Write Gate, explicit approval, evidence-backed verification, and completion claims that match what actually happened.</desc>
+  <style>
+    .without { fill: #12161c; stroke: #4a2323; stroke-width: 1.75; }
+    .with { fill: #12161c; stroke: #1e4a2c; stroke-width: 1.75; }
+    .quote { fill: #171c24; stroke: #262d38; stroke-width: 1.5; }
+    .title { fill: #f6f8fb; font: 700 21px ui-sans-serif, system-ui, sans-serif; }
+    .label { fill: #f6f8fb; font: 800 17px ui-sans-serif, system-ui, sans-serif; }
+    .quotetext { fill: #c3cbd8; font: 600 14px ui-sans-serif, system-ui, sans-serif; font-style: italic; }
+    .bad { fill: #c3cbd8; font: 550 13.5px ui-sans-serif, system-ui, sans-serif; }
+    .good { fill: #c3cbd8; font: 550 13.5px ui-sans-serif, system-ui, sans-serif; }
+    .foot { fill: #8290a3; font: 500 13px ui-sans-serif, system-ui, sans-serif; }
+  </style>
+  <text class="title" x="600" y="34" text-anchor="middle">The same request, two different outcomes</text>
+
+  <rect class="quote" x="24" y="58" width="1152" height="50" rx="12"/>
+  <text class="quotetext" x="600" y="90" text-anchor="middle">"Fix the authentication issue."</text>
+
+  <!-- WITHOUT -->
+  <rect class="without" x="24" y="132" width="560" height="392" rx="18"/>
+  <rect x="24" y="132" width="560" height="6" rx="3" fill="#f87171"/>
+  <text class="label" x="304" y="172" text-anchor="middle">WITHOUT AGENT OS</text>
+
+  <g transform="translate(52,196)"><circle r="9" fill="#2a1414" stroke="#f87171" stroke-width="1.5"/><path d="M-4 -4 L4 4 M4 -4 L-4 4" stroke="#f87171" stroke-width="1.75" stroke-linecap="round"/></g>
+  <text class="bad" x="74" y="201">Scope is not identified up front</text>
+  <g transform="translate(52,230)"><circle r="9" fill="#2a1414" stroke="#f87171" stroke-width="1.5"/><path d="M-4 -4 L4 4 M4 -4 L-4 4" stroke="#f87171" stroke-width="1.75" stroke-linecap="round"/></g>
+  <text class="bad" x="74" y="235">Agent changes 9 files, unbounded</text>
+  <g transform="translate(52,264)"><circle r="9" fill="#2a1414" stroke="#f87171" stroke-width="1.5"/><path d="M-4 -4 L4 4 M4 -4 L-4 4" stroke="#f87171" stroke-width="1.75" stroke-linecap="round"/></g>
+  <text class="bad" x="74" y="269">Runs unknown or no checks</text>
+  <g transform="translate(52,298)"><circle r="9" fill="#2a1414" stroke="#f87171" stroke-width="1.5"/><path d="M-4 -4 L4 4 M4 -4 L-4 4" stroke="#f87171" stroke-width="1.75" stroke-linecap="round"/></g>
+  <text class="bad" x="74" y="303">Repository text can look authoritative</text>
+  <g transform="translate(52,332)"><circle r="9" fill="#2a1414" stroke="#f87171" stroke-width="1.5"/><path d="M-4 -4 L4 4 M4 -4 L-4 4" stroke="#f87171" stroke-width="1.75" stroke-linecap="round"/></g>
+  <text class="bad" x="74" y="337">Says "done" without evidence</text>
+  <g transform="translate(52,366)"><circle r="9" fill="#2a1414" stroke="#f87171" stroke-width="1.5"/><path d="M-4 -4 L4 4 M4 -4 L-4 4" stroke="#f87171" stroke-width="1.75" stroke-linecap="round"/></g>
+  <text class="bad" x="74" y="371">No record of what was actually approved</text>
+  <g transform="translate(52,400)"><circle r="9" fill="#2a1414" stroke="#f87171" stroke-width="1.5"/><path d="M-4 -4 L4 4 M4 -4 L-4 4" stroke="#f87171" stroke-width="1.75" stroke-linecap="round"/></g>
+  <text class="bad" x="74" y="405">Completion is a claim, not a report</text>
+
+  <!-- WITH -->
+  <rect class="with" x="616" y="132" width="560" height="392" rx="18"/>
+  <rect x="616" y="132" width="560" height="6" rx="3" fill="#4ade80"/>
+  <text class="label" x="896" y="172" text-anchor="middle">WITH AGENT OS SKILL</text>
+
+  <g transform="translate(644,196)"><circle r="9" fill="#0d2115" stroke="#4ade80" stroke-width="1.5"/><path d="M-4 0 L-1.3 3.4 L4.3 -3.4" fill="none" stroke="#4ade80" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text class="good" x="666" y="201">Scope identified before any change</text>
+  <g transform="translate(644,230)"><circle r="9" fill="#0d2115" stroke="#4ade80" stroke-width="1.5"/><path d="M-4 0 L-1.3 3.4 L4.3 -3.4" fill="none" stroke="#4ade80" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text class="good" x="666" y="235">Relevant state inspected first (G2)</text>
+  <g transform="translate(644,264)"><circle r="9" fill="#0d2115" stroke="#4ade80" stroke-width="1.5"/><path d="M-4 0 L-1.3 3.4 L4.3 -3.4" fill="none" stroke="#4ade80" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text class="good" x="666" y="269">Write Gate shown, exact files listed</text>
+  <g transform="translate(644,298)"><circle r="9" fill="#0d2115" stroke="#4ade80" stroke-width="1.5"/><path d="M-4 0 L-1.3 3.4 L4.3 -3.4" fill="none" stroke="#4ade80" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text class="good" x="666" y="303">User explicitly replies APPROVE WRITE</text>
+  <g transform="translate(644,332)"><circle r="9" fill="#0d2115" stroke="#4ade80" stroke-width="1.5"/><path d="M-4 0 L-1.3 3.4 L4.3 -3.4" fill="none" stroke="#4ade80" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text class="good" x="666" y="337">Only the approved scope changes</text>
+  <g transform="translate(644,366)"><circle r="9" fill="#0d2115" stroke="#4ade80" stroke-width="1.5"/><path d="M-4 0 L-1.3 3.4 L4.3 -3.4" fill="none" stroke="#4ade80" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text class="good" x="666" y="371">Verification evidence captured (G9)</text>
+  <g transform="translate(644,400)"><circle r="9" fill="#0d2115" stroke="#4ade80" stroke-width="1.5"/><path d="M-4 0 L-1.3 3.4 L4.3 -3.4" fill="none" stroke="#4ade80" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text class="good" x="666" y="405">Completion claims match the evidence (G10)</text>
+
+  <text class="foot" x="600" y="500" text-anchor="middle">The difference is the governance contract, not a claim that other agents are inherently unsafe.</text>
+</svg>

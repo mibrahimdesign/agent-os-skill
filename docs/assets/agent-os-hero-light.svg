@@ -1,42 +1,55 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 380" role="img" aria-labelledby="title desc">
   <title id="title">Agent OS Skill: governance for AI coding agents</title>
   <desc id="desc">Agent OS Skill. Governance for AI coding agents. Scope, approval, evidence, honest completion.</desc>
   <defs>
-    <pattern id="grid-l" width="28" height="28" patternUnits="userSpaceOnUse">
-      <circle cx="1.4" cy="1.4" r="1.4" fill="#cbd5e1"/>
+    <pattern id="grid-l" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="1.2" cy="1.2" r="1.2" fill="#dbe3ee"/>
     </pattern>
+    <radialGradient id="glow-l" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2563eb" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#2563eb" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="edge-l" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c7d2e5"/>
+      <stop offset="100%" stop-color="#e7ecf5"/>
+    </linearGradient>
   </defs>
-  <rect width="1280" height="360" fill="#f8fafc"/>
-  <rect width="1280" height="360" fill="url(#grid-l)"/>
-  <rect x="1" y="1" width="1278" height="358" rx="20" fill="none" stroke="#e2e8f0" stroke-width="2"/>
 
-  <!-- abstract hub-and-node governance mark -->
-  <g transform="translate(96,180)" stroke="#94a3b8" stroke-width="1.5">
-    <line x1="0" y1="0" x2="0" y2="-56"/>
-    <line x1="0" y1="0" x2="49" y2="28"/>
-    <line x1="0" y1="0" x2="-49" y2="28"/>
-    <line x1="0" y1="0" x2="49" y2="-28"/>
-    <line x1="0" y1="0" x2="-49" y2="-28"/>
-    <circle cx="0" cy="0" r="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
-    <circle cx="0" cy="-56" r="7" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
-    <circle cx="49" cy="28" r="7" fill="#ffffff" stroke="#0891b2" stroke-width="2"/>
-    <circle cx="-49" cy="28" r="7" fill="#ffffff" stroke="#ea580c" stroke-width="2"/>
-    <circle cx="49" cy="-28" r="7" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
-    <circle cx="-49" cy="-28" r="7" fill="#ffffff" stroke="#0891b2" stroke-width="2"/>
+  <rect width="1280" height="380" rx="22" fill="#fbfcfe"/>
+  <rect width="1280" height="380" rx="22" fill="url(#grid-l)"/>
+  <rect x="1" y="1" width="1278" height="378" rx="21" fill="none" stroke="url(#edge-l)" stroke-width="1.5"/>
+
+  <circle cx="185" cy="190" r="150" fill="url(#glow-l)"/>
+
+  <!-- refined governance mark: hub + five nodes -->
+  <g transform="translate(178,190)">
+    <line x1="0" y1="0" x2="0" y2="-64" stroke="#c7d2e5" stroke-width="1.75"/>
+    <line x1="0" y1="0" x2="56" y2="32" stroke="#c7d2e5" stroke-width="1.75"/>
+    <line x1="0" y1="0" x2="-56" y2="32" stroke="#c7d2e5" stroke-width="1.75"/>
+    <line x1="0" y1="0" x2="56" y2="-32" stroke="#c7d2e5" stroke-width="1.75"/>
+    <line x1="0" y1="0" x2="-56" y2="-32" stroke="#c7d2e5" stroke-width="1.75"/>
+    <circle cx="0" cy="-64" r="8" fill="#ffffff" stroke="#2563eb" stroke-width="2.25"/>
+    <circle cx="56" cy="32" r="8" fill="#ffffff" stroke="#0891b2" stroke-width="2.25"/>
+    <circle cx="-56" cy="32" r="8" fill="#ffffff" stroke="#ea580c" stroke-width="2.25"/>
+    <circle cx="56" cy="-32" r="8" fill="#ffffff" stroke="#16a34a" stroke-width="2.25"/>
+    <circle cx="-56" cy="-32" r="8" fill="#ffffff" stroke="#7c3aed" stroke-width="2.25"/>
+    <circle cx="0" cy="0" r="19" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
   </g>
 
-  <text x="216" y="150" font="800 46px ui-sans-serif, system-ui, sans-serif" fill="#0f172a" letter-spacing="1">AGENT OS SKILL</text>
-  <text x="216" y="188" font="500 20px ui-sans-serif, system-ui, sans-serif" fill="#334155">Governance for AI coding agents.</text>
+  <text x="280" y="150" font="600 12.5px ui-sans-serif, system-ui, sans-serif" fill="#2563eb" letter-spacing="2.4">GOVERNANCE FOR AI CODING AGENTS</text>
+  <text x="280" y="205" font="800 52px ui-sans-serif, system-ui, sans-serif" fill="#0b1220" letter-spacing="0.3">Agent OS Skill</text>
+  <text x="280" y="245" font="500 19px ui-sans-serif, system-ui, sans-serif" fill="#3d4a5f">Scope control, explicit approval, and evidence-backed honesty — for any coding agent.</text>
 
-  <g font="650 15px ui-sans-serif, system-ui, sans-serif" fill="#1d4ed8">
-    <text x="216" y="240">Scope</text>
-    <text x="290" y="240" fill="#94a3b8">·</text>
-    <text x="308" y="240">Approval</text>
-    <text x="404" y="240" fill="#94a3b8">·</text>
-    <text x="422" y="240">Evidence</text>
-    <text x="518" y="240" fill="#94a3b8">·</text>
-    <text x="536" y="240">Honest completion</text>
+  <g font="650 14px ui-sans-serif, system-ui, sans-serif">
+    <rect x="280" y="266" width="86" height="30" rx="15" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="323" y="286" text-anchor="middle" fill="#1d4ed8">Scope</text>
+    <rect x="378" y="266" width="108" height="30" rx="15" fill="#ecfeff" stroke="#a5f3fc"/>
+    <text x="432" y="286" text-anchor="middle" fill="#0e7490">Approval</text>
+    <rect x="498" y="266" width="106" height="30" rx="15" fill="#fff7ed" stroke="#fed7aa"/>
+    <text x="551" y="286" text-anchor="middle" fill="#c2410c">Evidence</text>
+    <rect x="616" y="266" width="182" height="30" rx="15" fill="#f0fdf4" stroke="#bbf7d0"/>
+    <text x="707" y="286" text-anchor="middle" fill="#15803d">Honest completion</text>
   </g>
 
-  <text x="216" y="278" font="500 13px ui-sans-serif, system-ui, sans-serif" fill="#64748b">Markdown + JSON · no telemetry · no background process · host-neutral</text>
+  <text x="280" y="326" font="500 13px ui-sans-serif, system-ui, sans-serif" fill="#7788a0">Markdown + JSON  ·  no telemetry  ·  no background process  ·  host-neutral</text>
 </svg>

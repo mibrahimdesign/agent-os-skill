@@ -3,35 +3,39 @@
   <desc id="desc">Agent OS Skill. Governance for AI coding agents. Scope, approval, evidence, honest completion.</desc>
   <defs>
     <pattern id="grid-sp" width="32" height="32" patternUnits="userSpaceOnUse">
-      <circle cx="1.6" cy="1.6" r="1.6" fill="#30363d"/>
+      <circle cx="1.5" cy="1.5" r="1.5" fill="#1c232d"/>
     </pattern>
+    <radialGradient id="glow-sp" cx="50%" cy="34%" r="55%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="#60a5fa" stop-opacity="0"/>
+    </radialGradient>
   </defs>
-  <rect width="1280" height="640" fill="#0d1117"/>
+  <rect width="1280" height="640" fill="#0a0d12"/>
   <rect width="1280" height="640" fill="url(#grid-sp)"/>
+  <rect width="1280" height="640" fill="url(#glow-sp)"/>
 
   <!-- safe zone: content kept within x:128-1152, y:64-576 -->
 
-  <!-- abstract hub-and-node governance mark, centered above title -->
-  <g transform="translate(640,180)" stroke="#4b5563" stroke-width="2">
-    <line x1="0" y1="0" x2="0" y2="-70"/>
-    <line x1="0" y1="0" x2="61" y2="35"/>
-    <line x1="0" y1="0" x2="-61" y2="35"/>
-    <line x1="0" y1="0" x2="61" y2="-35"/>
-    <line x1="0" y1="0" x2="-61" y2="-35"/>
-    <circle cx="0" cy="0" r="18" fill="#102445" stroke="#60a5fa" stroke-width="3"/>
-    <circle cx="0" cy="-70" r="9" fill="#161b22" stroke="#60a5fa" stroke-width="2.5"/>
-    <circle cx="61" cy="35" r="9" fill="#161b22" stroke="#22d3ee" stroke-width="2.5"/>
-    <circle cx="-61" cy="35" r="9" fill="#161b22" stroke="#fb923c" stroke-width="2.5"/>
-    <circle cx="61" cy="-35" r="9" fill="#161b22" stroke="#4ade80" stroke-width="2.5"/>
-    <circle cx="-61" cy="-35" r="9" fill="#161b22" stroke="#22d3ee" stroke-width="2.5"/>
+  <g transform="translate(640,196)">
+    <line x1="0" y1="0" x2="0" y2="-72" stroke="#333d4b" stroke-width="2"/>
+    <line x1="0" y1="0" x2="62" y2="36" stroke="#333d4b" stroke-width="2"/>
+    <line x1="0" y1="0" x2="-62" y2="36" stroke="#333d4b" stroke-width="2"/>
+    <line x1="0" y1="0" x2="62" y2="-36" stroke="#333d4b" stroke-width="2"/>
+    <line x1="0" y1="0" x2="-62" y2="-36" stroke="#333d4b" stroke-width="2"/>
+    <circle cx="0" cy="-72" r="9" fill="#151a21" stroke="#60a5fa" stroke-width="2.5"/>
+    <circle cx="62" cy="36" r="9" fill="#151a21" stroke="#22d3ee" stroke-width="2.5"/>
+    <circle cx="-62" cy="36" r="9" fill="#151a21" stroke="#fb923c" stroke-width="2.5"/>
+    <circle cx="62" cy="-36" r="9" fill="#151a21" stroke="#4ade80" stroke-width="2.5"/>
+    <circle cx="-62" cy="-36" r="9" fill="#151a21" stroke="#a78bfa" stroke-width="2.5"/>
+    <circle cx="0" cy="0" r="22" fill="#132339" stroke="#60a5fa" stroke-width="3.5"/>
   </g>
 
-  <text x="640" y="336" text-anchor="middle" font="800 56px ui-sans-serif, system-ui, sans-serif" fill="#f8fafc" letter-spacing="1.5">AGENT OS SKILL</text>
-  <text x="640" y="384" text-anchor="middle" font="500 24px ui-sans-serif, system-ui, sans-serif" fill="#cbd5e1">Governance for AI Coding Agents</text>
+  <text x="640" y="320" text-anchor="middle" font="600 14px ui-sans-serif, system-ui, sans-serif" fill="#7fb1fb" letter-spacing="3">GOVERNANCE FOR AI CODING AGENTS</text>
+  <text x="640" y="378" text-anchor="middle" font="800 58px ui-sans-serif, system-ui, sans-serif" fill="#f6f8fb" letter-spacing="0.5">Agent OS Skill</text>
 
-  <g font="650 20px ui-sans-serif, system-ui, sans-serif" fill="#93c5fd" text-anchor="middle">
-    <text x="640" y="452">Scope  •  Approval  •  Evidence  •  Honest Completion</text>
+  <g font="650 18px ui-sans-serif, system-ui, sans-serif" fill="#a9b4c4" text-anchor="middle">
+    <text x="640" y="436">Scope · Approval · Evidence · Honest Completion</text>
   </g>
 
-  <text x="640" y="512" text-anchor="middle" font="500 15px ui-sans-serif, system-ui, sans-serif" fill="#8b949e">Public Beta · Markdown + JSON · MIT License</text>
+  <text x="640" y="500" text-anchor="middle" font="500 15px ui-sans-serif, system-ui, sans-serif" fill="#6b7686">Public Beta · Markdown + JSON · MIT License</text>
 </svg>

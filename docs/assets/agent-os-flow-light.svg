@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-labelledby="title desc">
+  <title id="title">Agent OS Skill request-to-completion flow</title>
+  <desc id="desc">A user task moves through understanding, scope lock, and read before write, then stops at a Write Gate. Only after the user replies APPROVE WRITE does the agent execute, verify, and produce an honest completion report.</desc>
+  <defs>
+    <marker id="arrow-l" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <style>
+    .card { fill: #ffffff; stroke: #e2e8f0; stroke-width: 1.5; }
+    .read { fill: #ecfeff; stroke: #a5f3fc; stroke-width: 1.5; }
+    .governance { fill: #eff6ff; stroke: #bfdbfe; stroke-width: 1.5; }
+    .write { fill: #fff7ed; stroke: #fed7aa; stroke-width: 1.5; }
+    .final { fill: #f0fdf4; stroke: #bbf7d0; stroke-width: 1.5; }
+    .title { fill: #0b1220; font: 700 21px ui-sans-serif, system-ui, sans-serif; }
+    .label { fill: #0b1220; font: 700 15.5px ui-sans-serif, system-ui, sans-serif; }
+    .meta { fill: #55637a; font: 500 12px ui-sans-serif, system-ui, sans-serif; }
+    .foot { fill: #7788a0; font: 500 12.5px ui-sans-serif, system-ui, sans-serif; }
+    .line { fill: none; stroke: #b6c0d1; stroke-width: 2; marker-end: url(#arrow-l); }
+    .badge-n { fill: #0b1220; font: 800 12px ui-monospace, SFMono-Regular, Menlo, monospace; }
+  </style>
+
+  <text class="title" x="600" y="34" text-anchor="middle">Every task follows the same governed path</text>
+
+  <g>
+    <rect class="card" x="24" y="70" width="208" height="104" rx="16"/>
+    <circle cx="52" cy="98" r="14" fill="#eef2f7" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text class="badge-n" x="52" y="102" text-anchor="middle">1</text>
+    <text class="label" x="128" y="128" text-anchor="middle">USER TASK</text>
+    <text class="meta" x="128" y="150" text-anchor="middle">Natural language</text>
+
+    <path class="line" d="M232 122 H248"/>
+    <rect class="read" x="252" y="70" width="208" height="104" rx="16"/>
+    <circle cx="280" cy="98" r="14" fill="#ffffff" stroke="#22d3ee" stroke-width="1.5"/>
+    <text class="badge-n" x="280" y="102" text-anchor="middle">2</text>
+    <text class="label" x="356" y="128" text-anchor="middle">UNDERSTAND</text>
+    <text class="meta" x="356" y="150" text-anchor="middle">Classify intent + risk</text>
+
+    <path class="line" d="M460 122 H476"/>
+    <rect class="governance" x="480" y="70" width="208" height="104" rx="16"/>
+    <circle cx="508" cy="98" r="14" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <text class="badge-n" x="508" y="102" text-anchor="middle">3</text>
+    <text class="label" x="584" y="128" text-anchor="middle">SCOPE LOCK</text>
+    <text class="meta" x="584" y="150" text-anchor="middle">G1 · bound the task</text>
+
+    <path class="line" d="M688 122 H704"/>
+    <rect class="read" x="708" y="70" width="208" height="104" rx="16"/>
+    <circle cx="736" cy="98" r="14" fill="#ffffff" stroke="#22d3ee" stroke-width="1.5"/>
+    <text class="badge-n" x="736" y="102" text-anchor="middle">4</text>
+    <text class="label" x="812" y="128" text-anchor="middle">READ BEFORE WRITE</text>
+    <text class="meta" x="812" y="150" text-anchor="middle">G2 · inspect real state</text>
+
+    <path class="line" d="M916 122 H932"/>
+    <rect class="write" x="936" y="70" width="208" height="104" rx="16"/>
+    <circle cx="964" cy="98" r="14" fill="#ffffff" stroke="#ea580c" stroke-width="1.5"/>
+    <text class="badge-n" x="964" y="102" text-anchor="middle">5</text>
+    <text class="label" x="1040" y="128" text-anchor="middle">WRITE GATE</text>
+    <text class="meta" x="1040" y="150" text-anchor="middle">G3 · scope shown, WAIT</text>
+  </g>
+
+  <path class="line" d="M1040 174 C1040 250 148 210 128 272"/>
+
+  <g>
+    <rect class="write" x="24" y="276" width="208" height="104" rx="16"/>
+    <circle cx="52" cy="304" r="14" fill="#ffffff" stroke="#ea580c" stroke-width="1.5"/>
+    <text class="badge-n" x="52" y="308" text-anchor="middle">6</text>
+    <text class="label" x="128" y="334" text-anchor="middle">APPROVE WRITE</text>
+    <text class="meta" x="128" y="356" text-anchor="middle">Live user reply, exact token</text>
+
+    <path class="line" d="M232 328 H248"/>
+    <rect class="write" x="252" y="276" width="208" height="104" rx="16"/>
+    <circle cx="280" cy="304" r="14" fill="#ffffff" stroke="#ea580c" stroke-width="1.5"/>
+    <text class="badge-n" x="280" y="308" text-anchor="middle">7</text>
+    <text class="label" x="356" y="334" text-anchor="middle">EXECUTE</text>
+    <text class="meta" x="356" y="356" text-anchor="middle">Only the approved scope</text>
+
+    <path class="line" d="M460 328 H476"/>
+    <rect class="read" x="480" y="276" width="208" height="104" rx="16"/>
+    <circle cx="508" cy="304" r="14" fill="#ffffff" stroke="#22d3ee" stroke-width="1.5"/>
+    <text class="badge-n" x="508" y="308" text-anchor="middle">8</text>
+    <text class="label" x="584" y="334" text-anchor="middle">VERIFY</text>
+    <text class="meta" x="584" y="356" text-anchor="middle">G9 · EXECUTED or DESCRIBED</text>
+
+    <path class="line" d="M688 328 H704"/>
+    <rect class="final" x="708" y="276" width="208" height="104" rx="16"/>
+    <circle cx="736" cy="304" r="14" fill="#ffffff" stroke="#16a34a" stroke-width="1.5"/>
+    <text class="badge-n" x="736" y="308" text-anchor="middle">9</text>
+    <text class="label" x="812" y="334" text-anchor="middle">HONEST COMPLETION</text>
+    <text class="meta" x="812" y="352" text-anchor="middle">G10 · SAVED / PROPOSED /</text>
+    <text class="meta" x="812" y="368" text-anchor="middle">UNCHANGED</text>
+  </g>
+
+  <text class="foot" x="600" y="432" text-anchor="middle">The WAIT at step 5 is mandatory. Nothing before step 6 authorizes a mutation.</text>
+</svg>

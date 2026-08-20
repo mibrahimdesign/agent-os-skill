@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" role="img" aria-labelledby="title desc">
+  <title id="title">Agent OS Skill operating modes: FULL, LIMITED, EMBEDDED</title>
+  <desc id="desc">Three operating modes describe available capability, not honesty. FULL has filesystem and command execution. LIMITED is missing some required capability and adapts honestly. EMBEDDED has no persistence and only proposes changes, never claiming a save.</desc>
+  <style>
+    .full { fill: #12161c; stroke: #1e4a2c; stroke-width: 1.75; }
+    .limited { fill: #12161c; stroke: #5c3717; stroke-width: 1.75; }
+    .embedded { fill: #12161c; stroke: #3d2e6e; stroke-width: 1.75; }
+    .banner { fill: #0f1e33; stroke: #223e63; stroke-width: 1.5; }
+    .title { fill: #f6f8fb; font: 700 21px ui-sans-serif, system-ui, sans-serif; }
+    .label { fill: #f6f8fb; font: 800 18px ui-sans-serif, system-ui, sans-serif; }
+    .meta { fill: #a9b4c4; font: 600 13px ui-sans-serif, system-ui, sans-serif; }
+    .bullet { fill: #c3cbd8; font: 500 13px ui-sans-serif, system-ui, sans-serif; }
+    .bannertext { fill: #93c5fd; font: 650 14.5px ui-sans-serif, system-ui, sans-serif; }
+  </style>
+  <text class="title" x="600" y="34" text-anchor="middle">Capability changes what runs. It never changes what may be claimed.</text>
+
+  <!-- FULL -->
+  <rect class="full" x="24" y="62" width="368" height="288" rx="18"/>
+  <rect x="24" y="62" width="368" height="6" rx="3" fill="#4ade80"/>
+  <text class="label" x="208" y="104" text-anchor="middle">FULL</text>
+  <circle cx="176" cy="126" r="4" fill="#4ade80"/><circle cx="192" cy="126" r="4" fill="#4ade80"/><circle cx="208" cy="126" r="4" fill="#4ade80"/>
+  <text class="meta" x="208" y="150" text-anchor="middle">Filesystem + command execution verified</text>
+  <line x1="52" y1="170" x2="364" y2="170" stroke="#1c2129"/>
+  <text class="bullet" x="52" y="198">Inspects and modifies a real project</text>
+  <text class="bullet" x="52" y="224">Verifies with real, run commands</text>
+  <text class="bullet" x="52" y="250">Claims backed by EXECUTED evidence</text>
+  <text class="bullet" x="52" y="276">Write Gate leads directly to a SAVED state</text>
+
+  <!-- LIMITED -->
+  <rect class="limited" x="416" y="62" width="368" height="288" rx="18"/>
+  <rect x="416" y="62" width="368" height="6" rx="3" fill="#fb923c"/>
+  <text class="label" x="600" y="104" text-anchor="middle">LIMITED</text>
+  <circle cx="568" cy="126" r="4" fill="#fb923c"/><circle cx="584" cy="126" r="4" fill="#fb923c"/><circle cx="600" cy="126" r="4" fill="#3a4351"/>
+  <text class="meta" x="600" y="150" text-anchor="middle">One or more capabilities missing</text>
+  <line x1="444" y1="170" x2="756" y2="170" stroke="#1c2129"/>
+  <text class="bullet" x="444" y="198">Adapts the workflow, does not invent</text>
+  <text class="bullet" x="444" y="224">States plainly what is unavailable</text>
+  <text class="bullet" x="444" y="250">Verification marked DESCRIBED where it</text>
+  <text class="bullet" x="444" y="270">could not actually run</text>
+  <text class="bullet" x="444" y="296">Still requires APPROVE WRITE to mutate</text>
+
+  <!-- EMBEDDED -->
+  <rect class="embedded" x="808" y="62" width="368" height="288" rx="18"/>
+  <rect x="808" y="62" width="368" height="6" rx="3" fill="#a78bfa"/>
+  <text class="label" x="992" y="104" text-anchor="middle">EMBEDDED</text>
+  <circle cx="960" cy="126" r="4" fill="#a78bfa"/><circle cx="976" cy="126" r="4" fill="#3a4351"/><circle cx="992" cy="126" r="4" fill="#3a4351"/>
+  <text class="meta" x="992" y="150" text-anchor="middle">No persistence capability</text>
+  <line x1="836" y1="170" x2="1148" y2="170" stroke="#1c2129"/>
+  <text class="bullet" x="836" y="198">Analyzes, reviews, and proposes only</text>
+  <text class="bullet" x="836" y="224">Produces PROPOSED STATE UPDATE blocks</text>
+  <text class="bullet" x="836" y="250">Never claims a file was saved</text>
+  <text class="bullet" x="836" y="276">Same G1-G10 rules, same honesty bar</text>
+
+  <rect class="banner" x="24" y="376" width="1152" height="56" rx="14"/>
+  <text class="bannertext" x="600" y="410" text-anchor="middle">Less capability changes what Agent OS can execute. It does not change what Agent OS may claim.</text>
+</svg>
